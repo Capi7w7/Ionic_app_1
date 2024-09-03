@@ -8,12 +8,24 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'inicio',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
   {
     path: 'inicio',
     loadChildren: () => import('./inicio/inicio.module').then( m => m.InicioPageModule)
+  },
+  {
+    path: 'singup',
+    loadChildren: () => import('./singup/singup.module').then( m => m.SingupPageModule)
+  },
+  {
+    path: 'resetpass',
+    loadChildren: () => import('./resetpass/resetpass.module').then( m => m.ResetpassPageModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
 ];
 
