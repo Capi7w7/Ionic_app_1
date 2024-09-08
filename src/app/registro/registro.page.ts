@@ -22,6 +22,7 @@ export class RegistroPage implements OnInit {
   {
    this.formularioRegistro = this.fb.group({
     'nombre': new FormControl("",Validators.required),
+    'email': new FormControl("",Validators.required),
     'password': new FormControl("",Validators.required),
     'confirmacionPassword': new  FormControl("",Validators.required)
    });
@@ -45,9 +46,21 @@ export class RegistroPage implements OnInit {
       return;
     }
 
+    if(this.formularioRegistro.valid){
+      const alert = await this.alertController.create({
+        header:'Ingresado correctamente',
+        message: 'Bienvenido a comunidad Mi Plaza Norte',
+        buttons: ['Aceptar']
+      })
+      
+      await alert.present();
+      return;
+    }
+
     var usuario = {
       nombre: f.nombre,
-      password: f.password
+      password: f.password,
+      email: f.email
     }
 
     console.log("Usuario registrado")
