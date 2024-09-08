@@ -7,9 +7,9 @@ export class AuthServiceService {
 
   constructor() { }
 
-  getUserByUsername(username: string): any {
-    const user = JSON.parse(localStorage.getItem('usuario') || '[]');
-    if (user && user.nombre === username) {
+  getUserByUsername(username: string, email: string): any {
+    const user = JSON.parse(localStorage.getItem('usuario') || '{}');
+    if (user && user.nombre === username && user.email === email) {
       return user;
     }
     return null;
