@@ -21,30 +21,48 @@
           <ion-label position="floating">Nombre</ion-label>
           <ion-input formControlName="nombre"></ion-input>
         </ion-item>
-
+        <div *ngIf="formularioRegistro.get('nombre')?.invalid && formularioRegistro.get('nombre')?.touched">
+          <p style="color: red;">Introduce tu nombre.</p>
+        </div>
         <ion-item>
           <ion-label position="floating">Correo electrónico</ion-label>
           <ion-input formControlName="email"></ion-input>
         </ion-item>
-
+        <div *ngIf="formularioRegistro.get('email')?.invalid && formularioRegistro.get('email')?.touched">
+          <p style="color: red;">Introduce un correo electrónico válido.</p>
+        </div>
         <ion-item>
           <ion-label position="floating">Contraseña</ion-label>
           <ion-input formControlName="password" type="password"></ion-input>
         </ion-item>
-
+        <div *ngIf="formularioRegistro.get('password')?.invalid && formularioRegistro.get('password')?.touched">
+          <p style="color: red;">
+            La contraseña debe tener al menos 4 números, 3 letras o caracteres especiales, y al menos una mayúscula.
+          </p>
+        </div>
         <ion-item>
           <ion-label position="floating">Confirmar contraseña</ion-label>
           <ion-input formControlName="confirmacionPassword" type="password"></ion-input>
         </ion-item>
+        <div *ngIf="formularioRegistro.get('confirmacionPassword')?.invalid && formularioRegistro.get('confirmacionPassword')?.touched">
+          <p style="color: red;">Confirma tu contraseña.</p>
+        </div>
         <br>
+        
 
-        <ion-button (click)="guardar()">
+        <ion-button expand="block" (click)="guardar()">
           Registrarse
         </ion-button>
 
       </form>
     </ion-card-content>
-  </ion-card>
-  
-  
+  </ion-card> 
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['/login']">Iniciar Sesión</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

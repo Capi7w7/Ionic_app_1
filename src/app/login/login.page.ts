@@ -22,13 +22,23 @@ export class LoginPage implements OnInit {
 
 
     this.formularioLogin = this.fb.group({
-      'nombre': new FormControl("", Validators.required),
+      'email': new FormControl("", Validators.required),
       'password': new FormControl("", Validators.required)
     });
 
   }
 
   async ingresar() {
+    if (this.formularioLogin.invalid) {
+      const alert = await this.alertController.create({
+        header: 'Formulario inválido',
+        message: 'Por favor, complete todos los campos correctamente.',
+        buttons: ['Aceptar']
+      });
+      await alert.present();
+      return;
+     }
+    
     var f = this.formularioLogin.value;
 
     var usuarioString = localStorage.getItem('usuario');
@@ -36,7 +46,7 @@ export class LoginPage implements OnInit {
     var usuario = usuarioString ? JSON.parse(usuarioString) : null;
 
     // Si 'usuario' es un objeto válido, comparamos las credenciales
-    if (usuario && usuario.nombre === f.nombre && usuario.password === f.password) {
+    if (usuario && usuario.email === f.email && usuario.password === f.password) {
       console.log('Ingresado correctamente');
 
       localStorage.setItem(

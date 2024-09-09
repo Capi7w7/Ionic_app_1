@@ -25,6 +25,9 @@
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
 
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+
 /**
  * Ionic Dark Mode
  * -----------------------------------------------------
@@ -35,3 +38,17 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import "@ionic/angular/css/palettes/dark.system.css";
+
+.background-image {
+    background-image: url('/src/assets/images/fondo.jpg'); /* Asegúrate de que esta ruta sea correcta */
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+  }
+  
+  ion-card {
+    background: rgba(255, 255, 255, 0.8); /* Opcional: para hacer el card ligeramente translúcido */
+    margin: 20px;
+  }
+
+  
