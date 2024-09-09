@@ -5,14 +5,23 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="background">
+
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">inicio</ion-title>
     </ion-toolbar>
   </ion-header>
   
-    <ion-label>
-      ¡Bienvenido {{ nombreUsuario }}!
-    </ion-label>
-  
+  <div class="subtitulo-container">
+    <ion-icon name="heart" class="subtitle-icon"></ion-icon>
+    <h2 class="custom-subtitle">¡Bienvenido {{ nombreUsuario }}!</h2>
+  </div>
+
+  <div class="subtitulo-container">
+  <h2 class="custom-subtitle">Explora la comunidad Mi Plaza Norte</h2>
+  </div> 
 </ion-content>
+
+<ion-footer>
+  <ion-button (click)="abrirModal()">Menu</ion-button>
+</ion-footer>
