@@ -1,54 +1,56 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="goBack()">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-title>ResetPass</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
+<ion-content [fullscreen]="true" class="background">
+
+<ion-card>
+
+  <ion-card-header>
     <ion-toolbar>
-      <ion-title size="large">resetpass</ion-title>
+      <ion-title>Restablecer contraseña</ion-title>
     </ion-toolbar>
-  </ion-header>
-
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Restablecer contraseña</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
+  </ion-card-header>
   
-  <ion-item>
-    <ion-label position="floating">Nombre de usuario</ion-label>
-    <ion-input [(ngModel)]="username"></ion-input>
-  </ion-item>
+    <ion-card-content>
+      <ion-item>
+        <ion-label position="floating">Nombre de usuario</ion-label>
+        <ion-input [(ngModel)]="username"></ion-input>
+      </ion-item>
 
-  
-  <ion-item>
-    <ion-label position="floating">Correo electrónico</ion-label>
-    <ion-input [(ngModel)]="email"></ion-input>
-  </ion-item>
-  
-  <ion-button expand="full" (click)="requestReset()">Enviar código de recuperación</ion-button>
+      
+      <ion-item>
+        <ion-label position="floating">Correo electrónico</ion-label>
+        <ion-input [(ngModel)]="email"></ion-input>
+      </ion-item>
+      
+      <ion-button expand="full" (click)="requestReset()">Enviar código de recuperación</ion-button>
 
-  
-  <ion-item *ngIf="showVerification">
-    <ion-label position="floating">Código de verificación</ion-label>
-    <ion-input [(ngModel)]="verificationCode"></ion-input>
-  </ion-item>
+      
+      <ion-item *ngIf="showVerification" class="background">
+        <ion-label position="floating">Código de verificación</ion-label>
+        <ion-input [(ngModel)]="verificationCode"></ion-input>
+      </ion-item>
 
-  
-  <ion-item *ngIf="showVerification">
-    <ion-label position="floating">Nueva contraseña</ion-label>
-    <ion-input type="password" [(ngModel)]="newPassword"></ion-input>
-  </ion-item>
+      
+      <ion-item *ngIf="showVerification">
+        <ion-label position="floating">Nueva contraseña</ion-label>
+        <ion-input type="password" [(ngModel)]="newPassword"></ion-input>
+      </ion-item>
 
-  <ion-button expand="full" *ngIf="showVerification" (click)="resetPassword()">Restablecer contraseña</ion-button>
+      <ion-button expand="full" *ngIf="showVerification" (click)="resetPassword()">Restablecer contraseña</ion-button>
+
+      </ion-card-content>
+  </ion-card>
 </ion-content>
 
-
-</ion-content>
 <ion-footer>
   <ion-toolbar color="primary">
     <ion-buttons slot="end">
@@ -56,3 +58,4 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-footer>
+

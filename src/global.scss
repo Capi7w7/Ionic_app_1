@@ -39,16 +39,19 @@
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import "@ionic/angular/css/palettes/dark.system.css";
 
-.background-image {
-    background-image: url('/src/assets/images/fondo.jpg'); /* Asegúrate de que esta ruta sea correcta */
+body {
+    background-image: url('/assets/images/fondo.jpg'); 
     background-size: cover;
     background-position: center;
     height: 100%;
   }
   
   ion-card {
-    background: rgba(255, 255, 255, 0.8); /* Opcional: para hacer el card ligeramente translúcido */
+    background: rgba(221, 212, 212, 0.7); 
     margin: 20px;
   }
 
+  ion-item {
+    background: rgb(240, 225, 225);
+  }
   

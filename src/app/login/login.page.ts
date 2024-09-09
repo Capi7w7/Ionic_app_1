@@ -6,13 +6,24 @@ import {
   FormBuilder
 } from '@angular/forms';
 import { AlertController, NavController } from '@ionic/angular';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
+  animations: [
+    trigger('fadeIn', [
+      state('void', style({ opacity: 0 })),
+      transition(':enter, :leave', [
+        animate('3s')
+      ]),
+    ])
+  ]
 })
 export class LoginPage implements OnInit {
+
+  
 
   formularioLogin: FormGroup;
 
@@ -20,12 +31,25 @@ export class LoginPage implements OnInit {
     public alertController: AlertController,
     public navCtrl: NavController) {
 
+      
+
 
     this.formularioLogin = this.fb.group({
       'email': new FormControl("", Validators.required),
       'password': new FormControl("", Validators.required)
     });
 
+  }
+
+  animationState = 'active';
+  forgotPasswordVisible = false;
+
+  toggleAnimation() {
+    this.animationState = this.animationState === 'active' ? 'inactive' : 'active';
+  }
+
+  showForgotPassword() {
+    this.forgotPasswordVisible = true;
   }
 
   async ingresar() {

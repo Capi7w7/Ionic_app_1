@@ -2,7 +2,7 @@
 // http://ionicframework.com/docs/theming/
 
 :root {
-    --ion-color-primary: #a918fd;
+    --ion-color-primary: #a409f7;
     --ion-color-secondary: #0cd1e8;
     --ion-color-tertiary: #7044ff;
     --ion-color-success: #10dc60;
@@ -13,10 +13,9 @@
     --ion-color-light: #f4f5f8;
   }
 
-  @media (prefers-color-scheme: dark) {
+  @media (prefers-color-scheme: light) {
     :root {
-      --ion-background-color: #0b0216;
-      --ion-color-primary: #a918fd;
+      --ion-color-primary: #9d13ec;
     }
   }
   

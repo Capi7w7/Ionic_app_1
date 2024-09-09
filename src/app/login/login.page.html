@@ -6,7 +6,8 @@
 
 <ion-content [fullscreen]="true" class="background">
 
-  <ion-card>
+  <div [@fadeIn]="animationState">
+  <ion-card class="page-content">
     <ion-card-header>
       <ion-card-title>Iniciar Sesión</ion-card-title>
     </ion-card-header>
@@ -18,18 +19,21 @@
         </ion-item>
         <ion-item>
           <ion-label position="floating">Contraseña</ion-label>
-          <ion-input formControlName="password" type="password"></ion-input>    
+          <ion-input (click)="showForgotPassword()"  formControlName="password" type="password"></ion-input>    
         </ion-item>
       </form>
       <br>
       <ion-button (click)="ingresar()">
         ingresar
       </ion-button>
-      <ion-button  fill="clear" (click)="OlvidoContrasena()">
-        ¿Olvidaste tu contraseña?
-      </ion-button>
+      <div *ngIf="forgotPasswordVisible" [@fadeIn]>
+        <ion-button fill="clear" (click)="OlvidoContrasena()">
+          ¿Olvidaste tu contraseña?
+        </ion-button>
+      </div>
     </ion-card-content>
   </ion-card>
+</div>
 </ion-content>
 
 <ion-footer>
