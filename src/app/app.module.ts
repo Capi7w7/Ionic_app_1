@@ -11,11 +11,14 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { RegistroPage } from './registro/registro.page';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), ReactiveFormsModule, MatFormFieldModule, MatDatepickerModule,MatNativeDateModule, AppRoutingModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  imports: [BrowserModule,BrowserAnimationsModule, IonicModule.forRoot(), ReactiveFormsModule, MatFormFieldModule, MatDatepickerModule,MatNativeDateModule, AppRoutingModule],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, provideAnimationsAsync()],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

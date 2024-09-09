@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthServiceService } from '../auth.service.service';
-import { AlertController } from '@ionic/angular'; 
+import { AlertController, NavController } from '@ionic/angular'; 
+
 
 @Component({
   selector: 'app-resetpass',
@@ -16,7 +17,7 @@ export class ResetpassPage implements OnInit {
   generatedCode: string = '';
   showVerification: boolean = false;
 
-  constructor(private authService: AuthServiceService, public alertController: AlertController) { }
+  constructor(public authService: AuthServiceService, public alertController: AlertController, public navCtrl: NavController) { }
 
   // Solicitar código de recuperación después de verificar nombre de usuario y correo
    async requestReset() {
@@ -84,6 +85,10 @@ export class ResetpassPage implements OnInit {
 
       
     }
+  }
+
+  goBack() {
+    this.navCtrl.back();
   }
 
   ngOnInit() {
