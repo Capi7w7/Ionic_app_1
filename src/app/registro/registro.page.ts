@@ -64,7 +64,7 @@ export class RegistroPage implements OnInit {
     if (this.formularioRegistro.valid) {
       const alert = await this.alertController.create({
         header: 'Ingresado correctamente',
-        message: 'Bienvenido a comunidad Mi Plaza Norte',
+        message: 'Se ha registrado Exitosamente',
         buttons: ['Aceptar']
       });
 
