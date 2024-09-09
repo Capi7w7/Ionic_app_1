@@ -1,5 +1,6 @@
 import { JsonPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import {
   FormGroup,
   FormControl,
@@ -23,8 +24,8 @@ export class RegistroPage implements OnInit {
   {
    this.formularioRegistro = this.fb.group({
     'nombre': new FormControl("",Validators.required),
-    'email': new FormControl("",Validators.required),
-    'password': new FormControl("",Validators.required),
+    'email': new FormControl("",[Validators.required,Validators.email]),
+    'password': new FormControl("",[Validators.required,Validators.pattern(/^(?=(?:.*\d){4})(?=(?:.*[a-zA-Z]){3})(?=(?:.*[A-Z]){1})(?!.*\s).{8,}$/)]),
     'confirmacionPassword': new  FormControl("",[Validators.required])
    }, { validators: authService.passwordMatchValidator });
    }
