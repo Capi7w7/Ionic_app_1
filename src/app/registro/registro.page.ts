@@ -10,6 +10,7 @@ import {
 import { AlertController, NavController } from '@ionic/angular';
 import { AuthServiceService } from '../auth.service.service';
 
+
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.page.html',
@@ -26,7 +27,8 @@ export class RegistroPage implements OnInit {
     'nombre': new FormControl("",Validators.required),
     'email': new FormControl("",[Validators.required,Validators.email]),
     'password': new FormControl("",[Validators.required,Validators.pattern(/^(?=(?:.*\d){4})(?=(?:.*[a-zA-Z]){3})(?=(?:.*[A-Z]){1})(?!.*\s).{8,}$/)]),
-    'confirmacionPassword': new  FormControl("",[Validators.required])
+    'confirmacionPassword': new  FormControl("",[Validators.required]),
+    'birthdate': new FormControl('', Validators.required) 
    }, { validators: authService.passwordMatchValidator });
    }
 
