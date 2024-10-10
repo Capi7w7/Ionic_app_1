@@ -1,53 +1,83 @@
 ion-content.background{
-    --background: url(/assets/images/fondo.jpg) 0 0/100% 100% no-repeat;
+  --background: url(/assets/images/fondo.jpg) 0 0/100% 100% no-repeat;
 }
 
 .page-content {
-    justify-content: center; /* Centrar horizontalmente */
-    align-items: center; /* Centrar verticalmente */
-    height: 40vh; /* Ocupa toda la altura de la ventana */
-  }
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center; /* Centrar verticalmente */
+  height: 40vh; /* Ocupa toda la altura de la ventana */
+}
 
 ion-card-title {
-    color: black;
-  }
+  color: black;
+}
 
-  ion-input {
-    color: rgb(4, 17, 17);
-  }
+ion-input {
+  color: rgb(4, 17, 17);
+}
 
-  
+
 .subtitulo-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px; /* Espacio entre el icono y el subtítulo */
-  margin-bottom: 20px;
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 10px; /* Espacio entre el icono y el subtítulo */
+margin-bottom: 20px;
 }
 
 .subtitle-icon {
-  font-size: 2rem;
-  color: #e90e0e; /* Color del icono */
+font-size: 2rem;
+color: #FF4081; /* Color del icono */
 }
 
 .custom-subtitle {
-  font-family: 'Poppins', sans-serif;
-  font-size: 1.5rem;
-  font-weight: 500;
-  text-align: center;
-  color: #000000;
-  margin-top: 20px;
-  padding: 10px 20px;
-  line-height: 1.5;
+font-family: 'Poppins', sans-serif;
+font-size: 1.5rem;
+font-weight: 500;
+text-align: center;
+color: #000000;
+margin-top: 20px;
+padding: 10px 20px;
+line-height: 1.5;
 }
 
 .custom-modal .modal-wrapper {
-  height: 100%;
-  width: 70%; /* Ancho del modal */
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  background: white;
-  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+height: 100%;
+width: 70%; /* Ancho del modal */
+position: absolute;
+left: 0;
+top: 0;
+bottom: 0;
+background: white;
+box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.titulo-container {
+  display: flex;
+  justify-content: center; /* Centrar horizontalmente el contenido */
+  align-items: center; /* Centrar verticalmente el contenido */
+  background-color: rgba(240, 200, 240, 0.678); /* Fondo blanco con transparencia */
+  padding: 1px 3px; /* Padding vertical reducido y horizontal normal */
+  border-radius: 10px; /* Esquinas más redondeadas */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  max-width: 245px; /* Ancho máximo más pequeño */
+  margin: 20px auto; /* Centrar horizontalmente el contenedor en el padre */
+}
+
+.subtitle-icon2 {
+  font-size: 2rem;
+  color: #FF4081; /* Color del icono */
+  margin-right: 7px; /* Espacio entre el icono y el texto */
+}
+
+
+.custom-subtitle {
+font-family: 'Arial', sans-serif;
+font-size: 1.2rem;
+font-weight: 500;
+text-align: center;
+color: #141313b7;
+margin: 0; /* Eliminar el margen superior */
+padding: 0; /* Eliminar el padding para acercarlo más al icono */
+line-height: 1.5;
 }
