@@ -1,0 +1,48 @@
+{
+  "perfiles": [
+    {
+      "id": 1,
+      "mail": "fe.ferradap@duocuc.cl",
+      "pass": "Abc123456",
+      "nombre": "Felipe",
+      "apellido": "Ferrada",
+      "apodo": "Capi",
+      "edad": 23,
+      "img_perf": "https://i.pinimg.com/originals/eb/cf/f4/ebcff41086054c2e391726efaa1fa192.png"
+    },
+    {
+      "id": 2,
+      "mail": "na.suarez@duocuc.cl",
+      "pass": "Abc123456",
+      "nombre": "Nayareth",
+      "apellido": "Suarez",
+      "apodo": "Nay",
+      "edad": 21,
+      "img_perf": "https://th.bing.com/th/id/OIP.A9NoL9YD_Eolof8BwvVbWgHaG1?rs=1&pid=ImgDetMain"
+    },
+    {
+      "id": 3,
+      "mail": "mat1@gmail.com",
+      "pass": "Abc123456",
+      "nombre": "Matias",
+      "apellido": "Martinez",
+      "edad": 23
+    }
+  ],
+  "chat": [
+    {
+      "id": 1,
+      "title": "¿Comunidades?",
+      "text": "Quiero conocer las comunidades que existen en la aplición",
+      "views": 100,
+      "autor": "Nay"
+    },
+    {
+      "id": 2,
+      "title": "Formemos un equipo de ajedrez!",
+      "text": "Estoy interesado en crear un equipo de ajedrez quien se suma?",
+      "views": 20,
+      "autor": "Capi"
+    }
+  ]
+}

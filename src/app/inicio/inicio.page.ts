@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { ModalPage } from '../modal/modal.page';
+import { ActivatedRoute } from '@angular/router';
+import { ApiserviceService } from '../apiservice.service';
 
 @Component({
   selector: 'app-inicio',
@@ -11,31 +13,50 @@ import { ModalPage } from '../modal/modal.page';
 
 
 export class InicioPage implements OnInit {
+  userId!: number;
+    userData: any;
   nombreUsuario: string = '';
 
-  constructor(private modalController: ModalController) { }
+  constructor(
+    private route: ActivatedRoute,
+    private apiService: ApiserviceService,
+    private modalController: ModalController
+  ) { }
 
   ngOnInit() {
-    const usuario = localStorage.getItem('usuario');
-
-    if (usuario) {
-      const datosUsuario = JSON.parse(usuario);
-      this.nombreUsuario = datosUsuario.nombre || 'Usuario';  // Fallback a "Usuario" si no hay nombre
+    this.route.paramMap.subscribe(params => {
+      const idParam = params.get('id');
+      if (idParam) {
+        this.userId = +idParam; 
+        this.loadUserData();
+      } else {
+        console.error('No ID provided');
       }
-    }
-
-    async abrirModal() {
-      const modal = await this.modalController.create({
-        component: ModalPage,
-        cssClass: 'custom-modal',
-        componentProps: { 
-          nombreUsuario: this.nombreUsuario,
-        }
-      });
-  
-      return await modal.present();
-    }
-
+    });
   }
 
 
+  async abrirModal() {
+    const modal = await this.modalController.create({
+      component: ModalPage,
+      cssClass: 'custom-modal',
+    });
+
+    return await modal.present();
+  }
+
+  loadUserData() {
+    this.apiService.getPerfilbyID(this.userId).subscribe(
+      async (data) => {
+        this.userData = data;
+        console.log('User data:', this.userData[0]);
+      },
+      (error) => {
+        console.error('Error fetching user data:', error);
+      }
+    );
+
+   
+
+  }
+}
