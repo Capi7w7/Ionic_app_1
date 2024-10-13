@@ -1,30 +1,32 @@
-import { JsonPipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import {
-  FormGroup,
-  FormControl,
-  Validators,
-  FormBuilder
-} from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { AlertController, NavController } from '@ionic/angular';
 import { AuthServiceService } from '../auth.service.service';
-
+import { ApiserviceService } from '../apiservice.service'; 
+import { IperfilId } from '../interfaces/iperfil-id';
+import { InfiniteScrollCustomEvent, LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.page.html',
   styleUrls: ['./registro.page.scss'],
 })
-export class RegistroPage implements OnInit {
+export class RegistroPage {
   formularioRegistro: FormGroup;
 
-  constructor(public fb:FormBuilder, public alertController: AlertController,
-    public navCtrl: NavController, public authService: AuthServiceService ) 
-  
+  constructor(
+    public fb: FormBuilder,
+    public alertController: AlertController,
+    public navCtrl: NavController,
+    public authService: AuthServiceService,
+    private apiService: ApiserviceService,
+    private loadingCtrl:LoadingController
+  ) 
   {
    this.formularioRegistro = this.fb.group({
     'nombre': new FormControl("",Validators.required),
+    'apellido': new FormControl("",Validators.required),
+    'apodo': new FormControl("",Validators.required),
     'email': new FormControl("",[Validators.required,Validators.email]),
     'password': new FormControl("",[Validators.required,Validators.pattern(/^(?=(?:.*\d){4})(?=(?:.*[a-zA-Z]){3})(?=(?:.*[A-Z]){1})(?!.*\s).{8,}$/)]),
     'confirmacionPassword': new  FormControl("",[Validators.required]),
@@ -32,9 +34,18 @@ export class RegistroPage implements OnInit {
    }, { validators: authService.passwordMatchValidator });
    }
 
-
-  ngOnInit() {
+  private calculateAge(birthdate: string): number {
+    const today = new Date();
+    const birthDate = new Date(birthdate);
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    return age;
   }
+
+  
 
   async guardar() {
     var f = this.formularioRegistro.value;
@@ -64,45 +75,44 @@ export class RegistroPage implements OnInit {
     }
 
     if (this.formularioRegistro.valid) {
-      const alert = await this.alertController.create({
-        header: 'Ingresado correctamente',
-        message: 'Se ha registrado Exitosamente',
-        buttons: ['Aceptar']
-      });
+      var usuario: any = {
+        mail: f.email,
+        pass: f.password,
+        nombre: f.nombre,
+        apellido: f.apellido || ""
+      }
 
-      await alert.present();
-    
-    /*if(this.formularioRegistro.invalid){
-      const alert = await this.alertController.create({
-        header:'Datos incompletos',
-        message: 'Favor llenar todos los campos.',
-        buttons: ['Aceptar']
-      });
+    if (f.apodo) usuario.apodo = f.apodo;
+    if (f.birthdate) usuario.edad = this.calculateAge(f.birthdate);
+    if (f.img_perf) usuario.img_perf = f.img_perf;
 
-      await alert.present();
+      this.apiService.crearPerfil(usuario).subscribe(
+        async (response) => {
+          const alert = await this.alertController.create({
+            header: 'Ingresado correctamente',
+            message: 'Se ha registrado Exitosamente',
+            buttons: ['Aceptar']
+          });
+          await alert.present();
+          console.log("Usuario registrado", response);
+        },
+        async (error) => {
+          const alert = await this.alertController.create({
+            header: 'Error',
+            message: 'Hubo un problema al registrar el usuario',
+            buttons: ['Aceptar']
+          });
+          await alert.present();
+          console.error("Error al registrar usuario", error);
+        }
+      );
+    }
     }
 
-    if(this.formularioRegistro.valid){
-      const alert = await this.alertController.create({
-        header:'Ingresado correctamente',
-        message: 'Bienvenido a comunidad Mi Plaza Norte',
-        buttons: ['Aceptar']
-      })
-
-      await alert.present();
-    }*/
-
-    var usuario = {
-      nombre: f.nombre,
-      password: f.password,
-      email: f.email
-    }
-
-    console.log("Usuario registrado")
-
-
-    localStorage.setItem('usuario',JSON.stringify(usuario));
-  }
-
-}  
-}
+    async cargarPerfiles(event?: InfiniteScrollCustomEvent){
+      const loading = await this.loadingCtrl.create({
+        message: "Cargando...",
+        spinner: "bubbles"
+      }
+    ); 
+  }}

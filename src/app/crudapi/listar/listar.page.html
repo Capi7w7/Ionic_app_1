@@ -1,0 +1,31 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/inicio"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Ver perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">listar</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-card>
+    <ion-card-header> ID # {{ perfil.id }}</ion-card-header>
+    <ion-card-title>Nombre {{ perfil.nombre }}</ion-card-title>
+    <ion-card-subtitle>Apellido {{ perfil.apellido}}</ion-card-subtitle>
+    <ion-card-subtitle>Correo {{ perfil.mail}}</ion-card-subtitle>
+    <ion-card-content>
+      <strong>Apodo: {{perfil.apodo}} </strong>
+      <div class="profile-photo-frame">
+      <img src="{{perfil.img_perf}}" alt="No se a encontrado una imagen"  class="profile-photo">
+      </div>
+    </ion-card-content>
+
+
+  </ion-card>
+
+</ion-content>

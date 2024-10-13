@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
   templateUrl: './modal.page.html',
   styleUrls: ['./modal.page.scss'],
 })
+
 export class ModalPage implements OnInit {
 
   constructor(private modalController: ModalController, private router: Router) { }
@@ -19,12 +20,18 @@ export class ModalPage implements OnInit {
   }
 
   cerarSesion() {
-    localStorage.removeItem('usuario');
-    
-    this.modalController.dismiss();
 
     this.router.navigate(['/login'])
 
   }
 
+  public pefilPages = [
+    { title: 'Ver perfil', url: '/listar', icon: 'list' },
+    { title: 'Ver perfiles', url: '/leer', icon: 'people' },
+    { title: 'Editar perfil', url: '/actualizar', icon: 'create' },
+    { title: 'Cerrar sesión', url: '/login', icon: 'log-out', handler: () => { this.cerarSesion(); } },
+  ]
+
 }
+
+

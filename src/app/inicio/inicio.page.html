@@ -22,7 +22,7 @@
   
   <div class="titulo-container">
     <ion-icon name="heart" class="subtitle-icon"></ion-icon>
-    <h2 class="custom-subtitle">¡Bienvenido/a {{ nombreUsuario }}!</h2>
+    <h2 class="custom-subtitle" >¡Bienvenido/a {{ this.userData[0].nombre  }}!</h2>
     <ion-icon name="heart" class="subtitle-icon2"></ion-icon>
   </div>
 </ion-content>
@@ -30,7 +30,7 @@
 <!-- Navbar con íconos -->
 <ion-tabs>
   <ion-tab-bar slot="bottom" color="primary">
-    <ion-tab-button tab="perfil">
+    <ion-tab-button (click)="abrirModal()">
       <ion-icon name="person"></ion-icon>
       <ion-label>Perfil</ion-label>
     </ion-tab-button>

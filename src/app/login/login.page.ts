@@ -5,8 +5,10 @@ import {
   Validators,
   FormBuilder
 } from '@angular/forms';
-import { AlertController, NavController } from '@ionic/angular';
+import { AlertController, InfiniteScrollCustomEvent, LoadingController, NavController } from '@ionic/angular';
 import { trigger, state, style, animate, transition } from '@angular/animations';
+import { ApiserviceService } from '../apiservice.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -29,7 +31,9 @@ export class LoginPage implements OnInit {
 
   constructor(public fb: FormBuilder,
     public alertController: AlertController,
-    public navCtrl: NavController) {
+    public navCtrl: NavController,
+    private apiService: ApiserviceService, private loadingCtrl: LoadingController,
+    private router: Router) {
 
       
 
@@ -44,6 +48,8 @@ export class LoginPage implements OnInit {
   animationState = 'active';
   forgotPasswordVisible = false;
 
+  userId: number = 0;
+
   toggleAnimation() {
     this.animationState = this.animationState === 'active' ? 'inactive' : 'active';
   }
@@ -52,7 +58,22 @@ export class LoginPage implements OnInit {
     this.forgotPasswordVisible = true;
   }
 
+  async OlvidoContrasena() {
+    this.navCtrl.navigateRoot('resetpass');
+  }
+
+  ngOnInit() {}
+
+  ionViewWillEnter(){
+    this.ingresar()
+  }
+
+  
   async ingresar() {
+    
+    var f = this.formularioLogin.value;
+
+
     if (this.formularioLogin.invalid) {
       const alert = await this.alertController.create({
         header: 'Formulario inválido',
@@ -63,36 +84,51 @@ export class LoginPage implements OnInit {
       return;
      }
     
-    var f = this.formularioLogin.value;
 
-    var usuarioString = localStorage.getItem('usuario');
-    
-    var usuario = usuarioString ? JSON.parse(usuarioString) : null;
-
-    // Si 'usuario' es un objeto válido, comparamos las credenciales
-    if (usuario && usuario.email === f.email && usuario.password === f.password) {
-      console.log('Ingresado correctamente');
-
-      localStorage.setItem(
-        'ingresado',
-        'true'
-      );
-
-      this.navCtrl.navigateRoot('inicio');
-
-    } else {
-      const alert = await this.alertController.create({
-        header: 'Datos incorrectos',
-        message: 'Los datos ingresados son incorrectos.',
-        buttons: ['Aceptar']
+    if (f.email && f.password) {
+      const loading = await this.loadingCtrl.create({
+        message: "Iniciando sesión...",
+        spinner: "bubbles"
       });
-      await alert.present();
+      await loading.present();
+
+    this.apiService.login(f.email, f.password).subscribe(
+      async (response) => {
+        await loading.dismiss();
+        if (response && response.length > 0) {
+          const user = response[0];
+          this.userId = user.id;
+          console.log("Usuario logueado", user);
+          this.router.navigate(['/inicio',this.userId]);
+        } else {
+          const alert = await this.alertController.create({
+            header: 'Error',
+            message: 'Usuario o contraseña incorrectos',
+            buttons: ['Aceptar']
+          });
+          await alert.present();
+        }
+      },
+      async (error) => {
+        await loading.dismiss();
+        const alert = await this.alertController.create({
+          header: 'Error',
+          message: 'Hubo un problema al iniciar sesión',
+          buttons: ['Aceptar']
+        });
+        await alert.present();
+        console.error("Error al iniciar sesión", error);
+      }
+    );
+  } else {
+    const alert = await this.alertController.create({
+      header: 'Datos incompletos',
+      message: 'Por favor, ingrese email y contraseña.',
+      buttons: ['Aceptar']
+    });
+    await alert.present();
+
+    
     }
   }
-
-  async OlvidoContrasena() {
-    this.navCtrl.navigateRoot('resetpass');
-  }
-
-  ngOnInit() {}
 }
