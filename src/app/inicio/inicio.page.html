@@ -3,21 +3,11 @@
     <div class="titulo-container">
       <h2 class="custom-subtitle">¡Bienvenido/a otra vez!</h2>
     </div>
-    
-    <ion-buttons slot="end">
-      <ion-button [routerLink]="'/login'">Salir</ion-button>
-    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" class="background">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-buttons slot="end">
-        <ion-button (click)="abrirModal()">Menu</ion-button>
-      </ion-buttons>
-    </ion-toolbar>
-  </ion-header>
+
   <ion-card class="profile-content">
     <div align="center" class="image">
       <ion-avatar>
@@ -77,6 +67,11 @@
     <ion-tab-button [routerLink]="['/eliminar']">
       <ion-icon name="person"></ion-icon>
       <ion-label>Mi perfil</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button [routerLink]="'/login'" (click)="exit()">
+      <ion-icon name="log-out"></ion-icon>
+      <ion-label>Salir</ion-label>
     </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>
