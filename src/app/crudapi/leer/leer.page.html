@@ -15,7 +15,7 @@
   </ion-header>
 
   <ion-list>
-    <ion-item *ngFor="let f of perfiles; let indexArray = index">
+    <ion-item *ngFor="let f of perfiles; let indexArray = index" [routerLink]="['/listar',f.id]">
       <ion-label> {{ f.apodo }} </ion-label>
     </ion-item>
   </ion-list>

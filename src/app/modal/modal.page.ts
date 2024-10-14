@@ -26,7 +26,7 @@ export class ModalPage implements OnInit {
   }
 
   public pefilPages = [
-    { title: 'Ver perfil', url: '/listar', icon: 'list' },
+    { title: 'Ver perfil', url: '/listar/:id', icon: 'list' },
     { title: 'Ver perfiles', url: '/leer', icon: 'people' },
     { title: 'Editar perfil', url: '/actualizar', icon: 'create' },
     { title: 'Cerrar sesión', url: '/login', icon: 'log-out', handler: () => { this.cerarSesion(); } },

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { ModalPage } from '../modal/modal.page';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiserviceService } from '../apiservice.service';
 
 @Component({
@@ -13,12 +13,13 @@ import { ApiserviceService } from '../apiservice.service';
 
 
 export class InicioPage implements OnInit {
-  userId!: number;
-    userData: any;
+  userId!: string;
+  userData: any;
   nombreUsuario: string = '';
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private apiService: ApiserviceService,
     private modalController: ModalController
   ) { }
@@ -27,7 +28,7 @@ export class InicioPage implements OnInit {
     this.route.paramMap.subscribe(params => {
       const idParam = params.get('id');
       if (idParam) {
-        this.userId = +idParam; 
+        this.userId = idParam; 
         this.loadUserData();
       } else {
         console.error('No ID provided');
@@ -55,8 +56,6 @@ export class InicioPage implements OnInit {
         console.error('Error fetching user data:', error);
       }
     );
-
-   
-
   }
+
 }

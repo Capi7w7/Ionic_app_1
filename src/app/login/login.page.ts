@@ -48,7 +48,7 @@ export class LoginPage implements OnInit {
   animationState = 'active';
   forgotPasswordVisible = false;
 
-  userId: number = 0;
+  userId: string = '';
 
   toggleAnimation() {
     this.animationState = this.animationState === 'active' ? 'inactive' : 'active';
@@ -98,7 +98,8 @@ export class LoginPage implements OnInit {
         if (response && response.length > 0) {
           const user = response[0];
           this.userId = user.id;
-          console.log("Usuario logueado", user);
+          localStorage.setItem('userId', this.userId);
+          console.log("Usuario logueado");
           this.router.navigate(['/inicio',this.userId]);
         } else {
           const alert = await this.alertController.create({
