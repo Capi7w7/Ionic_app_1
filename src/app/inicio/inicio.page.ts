@@ -8,6 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ApiserviceService } from '../apiservice.service';
 import { chatbubblesOutline, heartOutline, logOutOutline, mailOutline, notificationsOutline, personOutline } from 'ionicons/icons'
 import { RouterLink } from '@angular/router';
+import { AuthServiceService } from '../auth.service.service';
 
 @Component({
   selector: 'app-inicio',
@@ -31,6 +32,7 @@ export class InicioPage implements OnInit {
     private route: ActivatedRoute,
     private apiService: ApiserviceService,
     private modalController: ModalController,
+    private authService: AuthServiceService,
   ) { 
     addIcons({
       personOutline,
@@ -108,5 +110,8 @@ export class InicioPage implements OnInit {
     return rows;
   }
 
+  exit() {
+    this.authService.logout();
+  }
 
 }

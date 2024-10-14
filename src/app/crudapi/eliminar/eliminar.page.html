@@ -4,10 +4,21 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">eliminar</ion-title>
-    </ion-toolbar>
-  </ion-header>
-</ion-content>
+<ion-content [fullscreen]="true" class="background">
+
+  <ion-card class="profile-content">
+    <div align="center" class="image">
+      <ion-avatar>
+        <img [src]="imgPerf" alt="Imagen de perfil">  <!-- Muestra la imagen de perfil -->
+      </ion-avatar>
+    </div>
+  
+    <ion-item lines="none" class="profile">
+      <ion-label class="ion-text-center">
+        <ion-text color="primary">{{ nombreUsuario }}</ion-text>  <!-- Muestra el nombre del usuario -->
+        <p>
+          <ion-text color="light">Ing en Informática</ion-text>  <!-- Puedes ajustar esto con los datos reales -->
+        </p>
+      </ion-label>
+    </ion-item>
+  </ion-card>
