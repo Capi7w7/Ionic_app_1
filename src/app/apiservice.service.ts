@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { retry, catchError, Observable } from 'rxjs';
+import { retry, catchError, Observable, switchMap } from 'rxjs';
 import { Iperfil } from './interfaces/iperfil';
 import { environment } from 'src/environments/environment';
 import { IperfilId } from './interfaces/iperfil-id';
@@ -24,8 +24,8 @@ constructor(private httpClient: HttpClient) { }
 private apiUrl = 'http://localhost:3000'; 
 
   // obtener informacion
-  listarPerfil():Observable<Iperfil> {
-    return this.httpClient.get<Iperfil>(`${environment.apiURL}/perfiles`)
+  listarPerfil():Observable<Iperfil[]> {
+    return this.httpClient.get<Iperfil[]>(`${environment.apiURL}/perfiles`)
 }
 
   // agregar informacion
@@ -34,12 +34,21 @@ private apiUrl = 'http://localhost:3000';
 }
 
   // obtener segun id valores unicos
-  getPerfilbyID(id: number):Observable<Iperfil> {
+  getPerfilbyID(id: string):Observable<Iperfil> {
     return this.httpClient.get<Iperfil>(`${environment.apiURL}/perfiles/?id=${id}`)
 }
 
   login(email: string, password: string) {
   return this.httpClient.get<Iperfil[]>(`${environment.apiURL}/perfiles?mail=${email}&pass=${password}`);
+}
+
+  actualizarPassword(id: string, newPassword: string): Observable<Iperfil> {
+  return this.httpClient.get<Iperfil>(`${environment.apiURL}/perfiles/${id}`).pipe(
+    switchMap(user => {
+      const updatedUser = { ...user, pass: newPassword };
+      return this.httpClient.put<Iperfil>(`${environment.apiURL}/perfiles/${id}`, updatedUser);
+    })
+  );
 }
 
   // eleminar informacion

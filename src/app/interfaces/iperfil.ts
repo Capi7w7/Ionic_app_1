@@ -1,5 +1,5 @@
 export interface Iperfil {
-    id:number,
+    id:string,
     mail: string,
     pass: string,
     nombre: string,

@@ -1,9 +1,9 @@
 {
   "perfiles": [
     {
-      "id": 1,
+      "id": "ab1",
       "mail": "fe.ferradap@duocuc.cl",
-      "pass": "Abc123456",
+      "pass": "Abc654321",
       "nombre": "Felipe",
       "apellido": "Ferrada",
       "apodo": "Capi",
@@ -11,7 +11,7 @@
       "img_perf": "https://i.pinimg.com/originals/eb/cf/f4/ebcff41086054c2e391726efaa1fa192.png"
     },
     {
-      "id": 2,
+      "id": "ac2",
       "mail": "na.suarez@duocuc.cl",
       "pass": "Abc123456",
       "nombre": "Nayareth",
@@ -21,29 +21,40 @@
       "img_perf": "/assets/images/nayareth.jpg"
     },
     {
-      "id": 3,
+      "id": "ca3",
       "mail": "mat1@gmail.com",
       "pass": "Abc123456",
       "nombre": "Matias",
       "apellido": "Martinez",
-      "edad": 23,
-      "img_perf": "/assets/images/default-profile.jpg"
-    }
-  ],
-  "chat": [
-    {
-      "id": 1,
-      "title": "¿Comunidades?",
-      "text": "Quiero conocer las comunidades que existen en la aplición",
-      "views": 100,
-      "autor": "Nay"
+      "apodo": "cicuta",
+      "edad": 23
     },
     {
-      "id": 2,
-      "title": "Formemos un equipo de ajedrez!",
-      "text": "Estoy interesado en crear un equipo de ajedrez quien se suma?",
-      "views": 20,
-      "autor": "Capi"
+      "id": "c56a",
+      "mail": "shau12@gmail.com",
+      "pass": "Abc123456",
+      "nombre": "Tania",
+      "apellido": "Saez",
+      "apodo": "Shauna",
+      "edad": 88
+    },
+    {
+      "id": "4797",
+      "mail": "jovita@gmail.com",
+      "pass": "Abc123456",
+      "nombre": "Jovita",
+      "apellido": "Pacheco",
+      "apodo": "jovi",
+      "edad": 49
+    },
+    {
+      "id": "21c7",
+      "mail": "Jova.pacheco@gmail.com",
+      "pass": "Abc123456",
+      "nombre": "Jovita",
+      "apellido": "Pacheco",
+      "apodo": "Jovi",
+      "edad": 71
     }
   ]
 }

@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
 import { AbstractControl, ValidatorFn, FormGroup } from '@angular/forms';
+import { ApiserviceService } from './apiservice.service';
+import { Observable, map, switchMap, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthServiceService {
+  
 
-  constructor() { }
+  constructor(private apiService: ApiserviceService) { }
 
   passwordMatchValidator(formGroup: FormGroup): { [key: string]: boolean } | null {
     const password = formGroup.get('password');
@@ -19,25 +22,28 @@ export class AuthServiceService {
   }
 
 
-  getUserByUsername(username: string, email: string): any {
-    const user = JSON.parse(localStorage.getItem('usuario') || '{}');
-    if (user && user.nombre === username && user.email === email) {
-      return user;
-    }
-    return null;
+  getUserByUsername(username: string, email: string): Observable<any> {
+    return this.apiService.listarPerfil().pipe(
+      map(perfiles => perfiles.find(user => user.nombre === username && user.mail === email) || null)
+    );
   }
 
-  updatePasswordByUsername(username: string, newPassword: string): boolean {
-    const user = JSON.parse(localStorage.getItem('usuario') || '{}');
-
-    if (user && user.nombre === username) {
-      user.password = newPassword;
-      localStorage.setItem('usuario', JSON.stringify(user));
-      return true;
-    }
-    return false;
+  updatePasswordByUsername(id: string, newPassword: string): Observable<boolean> {
+    return this.apiService.getPerfilbyID(id).pipe(
+      switchMap(user => {
+        if (user) {
+          return this.apiService.actualizarPassword(id, newPassword).pipe(
+            map(() => true)
+          );
+        }
+        return of(false);
+      })
+    );
   }
 
+  logout() {
+    localStorage.removeItem('userId');
+  }
   
   generateVerificationCode(): string {
     return Math.floor(100000 + Math.random() * 900000).toString();  // Código de 6 dígitos

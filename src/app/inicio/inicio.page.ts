@@ -4,7 +4,7 @@ import { IonicModule } from '@ionic/angular';
 import { addIcons } from 'ionicons';
 import { ModalController } from '@ionic/angular';
 import { ModalPage } from '../modal/modal.page';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiserviceService } from '../apiservice.service';
 import { chatbubblesOutline, heartOutline, logOutOutline, mailOutline, notificationsOutline, personOutline } from 'ionicons/icons';
 
@@ -27,6 +27,7 @@ export class InicioPage implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private apiService: ApiserviceService,
     private modalController: ModalController,
   ) { 
@@ -54,7 +55,7 @@ export class InicioPage implements OnInit {
     this.route.paramMap.subscribe(params => {
       const idParam = params.get('id');
       if (idParam) {
-        this.userId = +idParam; 
+        this.userId = idParam; 
         this.loadUserData();
       } else {
         console.error('No ID provided');
