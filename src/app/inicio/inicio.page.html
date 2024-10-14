@@ -5,7 +5,7 @@
     </div>
     
     <ion-buttons slot="end">
-      <ion-button [routerLink]="'/login'">Salir</ion-button>
+      <ion-button (click)="exit()" [routerLink]="'/login'">Salir</ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>

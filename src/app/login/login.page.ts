@@ -71,6 +71,8 @@ export class LoginPage implements OnInit {
   
   async ingresar() {
     
+    localStorage.removeItem('userId');
+
     var f = this.formularioLogin.value;
 
 
