@@ -4,16 +4,17 @@ import { IonicModule } from '@ionic/angular';
 import { addIcons } from 'ionicons';
 import { ModalController } from '@ionic/angular';
 import { ModalPage } from '../modal/modal.page';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { ApiserviceService } from '../apiservice.service';
-import { chatbubblesOutline, heartOutline, logOutOutline, mailOutline, notificationsOutline, personOutline } from 'ionicons/icons';
+import { chatbubblesOutline, heartOutline, logOutOutline, mailOutline, notificationsOutline, personOutline } from 'ionicons/icons'
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.page.html',
   styleUrls: ['./inicio.page.scss'],
   standalone: true,
-  imports:[IonicModule,CommonModule]
+  imports:[IonicModule,CommonModule,RouterLink]
 })
 
 
@@ -21,13 +22,13 @@ export class InicioPage implements OnInit {
 
   options:any[] = [];
 
-  userId!: number;
-    userData: any;
+  userId!: string;
+  userData: any;
   nombreUsuario: string = '';
+  urlperfil: string = '';
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
     private apiService: ApiserviceService,
     private modalController: ModalController,
   ) { 
@@ -42,7 +43,7 @@ export class InicioPage implements OnInit {
   }
 
   ngOnInit() {
-    console.log('profile ngoninit');
+    console.log(this.options);
     this.options = [
       {title: 'Perfil', icon: 'person-outline', color: 'primary'},
       {title: 'Comunidad', icon: 'chatbubbles-outline', color: 'primary'},
@@ -78,6 +79,7 @@ export class InicioPage implements OnInit {
       async (data) => {
         this.userData = data;
         if (this.userData && this.userData[0]) {
+          this.urlperfil = this.userData[0].id;
           this.nombreUsuario = this.userData[0].nombre;  // Asigna el nombre del usuario
           this.imgPerf = this.userData[0].img_perf;  // Asigna la URL de la imagen
 

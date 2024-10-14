@@ -11,6 +11,12 @@ ion-input {
   color: rgb(4, 17, 17);
 }
 
+.option-button {
+  height: 100%;
+  width: 100%;
+  --padding-start: 0;
+  --padding-end: 0;
+}
 
 .subtitulo-container {
 display: flex;
@@ -128,3 +134,4 @@ ion-card.options {
   border-radius: 25px;
   padding-bottom: 18vh;
 }
+
