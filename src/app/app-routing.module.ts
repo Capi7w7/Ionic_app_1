@@ -9,45 +9,44 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
   },
   {
     path: 'registro',
-    loadChildren: () => import('./registro/registro.module').then( m => m.RegistroPageModule)
+    loadChildren: () => import('./registro/registro.module').then(m => m.RegistroPageModule)
   },
   {
-    path: 'inicio/:id', 
-    loadChildren: () => import('./inicio/inicio.module').then( m => m.InicioPageModule)
+    path: 'inicio/:id',
+    loadChildren: () => import('./inicio/inicio.module').then(m => m.InicioPageModule)
   },
   {
     path: 'resetpass',
-    loadChildren: () => import('./resetpass/resetpass.module').then( m => m.ResetpassPageModule)
+    loadChildren: () => import('./resetpass/resetpass.module').then(m => m.ResetpassPageModule)
   },
   {
     path: 'modal',
-    loadChildren: () => import('./modal/modal.module').then( m => m.ModalPageModule)
+    loadChildren: () => import('./modal/modal.module').then(m => m.ModalPageModule)
   },
   {
     path: 'listar',
-    loadChildren: () => import('./crudapi/listar/listar.module').then( m => m.ListarPageModule)
+    loadChildren: () => import('./crudapi/listar/listar.module').then(m => m.ListarPageModule)
   },
   {
     path: 'agregar',
-    loadChildren: () => import('./crudapi/agregar/agregar.module').then( m => m.AgregarPageModule)
+    loadChildren: () => import('./crudapi/agregar/agregar.module').then(m => m.AgregarPageModule)
   },
   {
     path: 'actualizar',
-    loadChildren: () => import('./crudapi/actualizar/actualizar.module').then( m => m.ActualizarPageModule)
+    loadChildren: () => import('./crudapi/actualizar/actualizar.module').then(m => m.ActualizarPageModule)
   },
   {
     path: 'leer',
-    loadChildren: () => import('./crudapi/leer/leer.module').then( m => m.LeerPageModule)
+    loadChildren: () => import('./crudapi/leer/leer.module').then(m => m.LeerPageModule)
   },
   {
     path: 'eliminar',
-    loadChildren: () => import('./crudapi/eliminar/eliminar.module').then( m => m.EliminarPageModule)
+    loadChildren: () => import('./crudapi/eliminar/eliminar.module').then(m => m.EliminarPageModule)
   }
-
 ];
 
 @NgModule({

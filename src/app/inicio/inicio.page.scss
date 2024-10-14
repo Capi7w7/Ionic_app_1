@@ -1,12 +1,7 @@
 ion-content.background{
-  --background: url(/assets/images/fondo.jpg) 0 0/100% 100% no-repeat;
+  --background: url(/assets/images/fondoperfil.jpeg) 0 0/100% 100% no-repeat;
 }
 
-.page-content {
-  justify-content: center; /* Centrar horizontalmente */
-  align-items: center; /* Centrar verticalmente */
-  height: 40vh; /* Ocupa toda la altura de la ventana */
-}
 
 ion-card-title {
   color: black;
@@ -25,22 +20,6 @@ gap: 10px; /* Espacio entre el icono y el subtítulo */
 margin-bottom: 20px;
 }
 
-.subtitle-icon {
-font-size: 2rem;
-color: #FF4081; /* Color del icono */
-}
-
-.custom-subtitle {
-font-family: 'Poppins', sans-serif;
-font-size: 1.5rem;
-font-weight: 500;
-text-align: center;
-color: #000000;
-margin-top: 20px;
-padding: 10px 20px;
-line-height: 1.5;
-}
-
 .custom-modal .modal-wrapper {
 height: 75%;
 width: 75%; /* Ancho del modal */
@@ -49,35 +28,103 @@ left: 0;
 top: 0;
 bottom: 0;
 background: white;
-box-shadow: 2px 0 10px rgba(0, 0, 0, 0.3);
+box-shadow: 2px 0 10px rgba(180, 38, 38, 0.3);
 }
 
 .titulo-container {
-  display: flex;
-  justify-content: center; /* Centrar horizontalmente el contenido */
-  align-items: center; /* Centrar verticalmente el contenido */
-  background-color: rgba(240, 200, 240, 0.678); /* Fondo blanco con transparencia */
-  padding: 1px 3px; /* Padding vertical reducido y horizontal normal */
-  border-radius: 10px; /* Esquinas más redondeadas */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-  max-width: 245px; /* Ancho máximo más pequeño */
-  margin: 20px auto; /* Centrar horizontalmente el contenedor en el padre */
-}
-
-.subtitle-icon2 {
-  font-size: 2rem;
-  color: #FF4081; /* Color del icono */
-  margin-right: 7px; /* Espacio entre el icono y el texto */
+  margin-top: -5px; /* Separación desde el elemento superior */
 }
 
 
 .custom-subtitle {
-font-family: 'Arial', sans-serif;
-font-size: 1.2rem;
-font-weight: 500;
-text-align: center;
-color: #141313b7;
-margin: 0; /* Eliminar el margen superior */
-padding: 0; /* Eliminar el padding para acercarlo más al icono */
-line-height: 1.5;
+  font-family: 'Poppins', 'Arial', sans-serif; /* Fuente moderna y legible */
+  font-size: 1.4rem; /* Aumentar el tamaño para mejor visibilidad */
+  font-weight: 400; /* Hacer el texto más fuerte pero no demasiado */
+  text-align: center;
+  color: #0d0d0d; /* Un color más oscuro para mejor contraste */
+  margin: 0;
+  padding: -40px 0; /* Añadir un poco de padding superior e inferior */
+  line-height: 1.5;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2); /* Añadir sombra para más profundidad */
+}
+
+.image {
+  transform: translateY(5vh);
+  ion-avatar {
+      width: 25vh;
+      height: 25vh;
+      border: 3px solid var(--ion-color-primary);
+      padding: 0.8vh;
+      margin-bottom: 6vh;
+      }
+ }
+
+ ion-item.profile {
+  --ion-background-color: transparent !important; /* Fondo transparente */
+  background-color: transparent !important; /* Asegura que sea transparente */
+}
+
+ion-item.profile ion-label {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+ion-item.profile ion-label p {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+ion-card.options {
+  position: absolute;
+  width: 80%;
+  margin: auto;
+  top: 40px;
+  left: 50%;
+  transform: translateY(48vh) translateX(-50%);
+  background-color: var(--ion-color-favorite); /* Aplica el color de fondo directamente */
+  border-radius: 30px;
+  ion-row {
+    padding-bottom: 1.5vh;
+    ion-col {
+      margin-top: 15px;
+        ion-label {
+          text-align: -webkit-center;
+          letter-spacing: 0.5px;
+      ion-avatar {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 4vh;
+          height: 4vh;
+          background-color: var(--ion-color-light);
+          border-radius: 50%;
+          ion-icon {
+              font-size: 1.3rem;
+          }
+          }
+          p {
+            margin-top: 5px;
+            ion-text {
+              font-size: 0.78rem;
+              font-weight: 550;
+          }
+        } 
+    }
+  }
+}
+}
+
+.borderBottom {
+  border-bottom: 1px solid var(--ion-color-light);
+}
+
+.paddingTop {
+  padding-top: 1.5vh;
+}
+
+.profile-content {
+  background: var(--ion-color-dark);
+  border-radius: 25px;
+  padding-bottom: 18vh;
 }

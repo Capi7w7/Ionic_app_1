@@ -1,17 +1,79 @@
-ion-content.background{
-    --background: url(/assets/images/fondo.jpg) 0 0/100% 100% no-repeat;
+/* Ajusta el fondo del ion-content */
+ion-content.background {
+  --background: url(/assets/images/fondo.jpg) center center/cover no-repeat;
+  background-attachment: fixed; /* Fija el fondo mientras se desplaza el contenido */
+}
+
+/* Centrado y estilo del contenido */
+.content-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh; /* Asegura que ocupe toda la pantalla */
 }
 
 .page-content {
-    justify-content: center; /* Centrar horizontalmente */
-    align-items: center; /* Centrar verticalmente */
-    height: 40vh; /* Ocupa toda la altura de la ventana */
-  }
+  width: 100%;
+  max-width: 400px; /* Define un tamaño máximo para la tarjeta */
+  margin: 30px;
+  padding: 5px;
+  border-radius: 15px; /* Bordes redondeados para un aspecto moderno */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco con transparencia */
+}
 
-ion-card-title {
-    color: black;
-  }
+.custom-card-title {
+  font-family: 'Reboto', sans-serif; /* Cambia la fuente para un estilo más moderno */
+  font-size: 18px; /* Tamaño de fuente más grande */
+  font-weight: bold; /* Asegura que sea más visible */
+  color: #333; /* Color del texto (puedes ajustarlo a lo que prefieras) */
+  text-align: center; /* Alineación centrada */
+  text-transform: uppercase; /* Convierte el texto a mayúsculas */
+  letter-spacing: 1.4px; /* Espaciado entre letras para darle más estilo */
+  margin-bottom: 5px; /* Añade un margen para separar el título del contenido */
+  border-bottom: 2px solid #e24ad3; /* Línea decorativa debajo del título */
+  padding-bottom: 10px; /* Espacio para que el título no quede pegado a la línea */
+}
 
-  ion-input {
-    color: rgb(255, 255, 255);
-  }
+
+ion-item {
+  margin-bottom: 5px; /* Añade un espacio entre los inputs */
+}
+
+ion-button {
+  margin-top: 10px; /* Añade espacio entre el formulario y el botón */
+}
+
+.forgot-password-button {
+  white-space: nowrap; /* Evita que el texto salte a la siguiente línea */
+  text-align: center;
+  font-size: 14px; /* Tamaño de fuente ajustado */
+  padding: 0; /* Elimina cualquier espacio extra alrededor del texto */
+}
+
+.title-login { 
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  text-align: center;
+  color: beige
+  ;
+}
+
+.bottom-register {
+  margin-top: auto;
+}
+
+.social-button {
+  --background: transparent; /* Fondo transparente */
+  --color: white; /* Color del ícono */
+  --padding-start: 8px; /* Espaciado de inicio */
+  --padding-end: 8px; /* Espaciado final */
+  font-size: 24px; /* Tamaño del ícono */
+  margin-right: 5px; /* Espacio entre íconos */
+  margin-top: auto;
+  font-size: 20px; /* Tamaño del ícono */
+}
+
+.login-image {
+  margin-top: -80px;
+
+}

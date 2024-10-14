@@ -1,18 +1,26 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { IonicModule } from '@ionic/angular';
+import { addIcons } from 'ionicons';
 import { ModalController } from '@ionic/angular';
 import { ModalPage } from '../modal/modal.page';
 import { ActivatedRoute } from '@angular/router';
 import { ApiserviceService } from '../apiservice.service';
+import { chatbubblesOutline, heartOutline, logOutOutline, mailOutline, notificationsOutline, personOutline } from 'ionicons/icons';
 
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.page.html',
   styleUrls: ['./inicio.page.scss'],
+  standalone: true,
+  imports:[IonicModule,CommonModule]
 })
 
 
-
 export class InicioPage implements OnInit {
+
+  options:any[] = [];
+
   userId!: number;
     userData: any;
   nombreUsuario: string = '';
@@ -20,10 +28,29 @@ export class InicioPage implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private apiService: ApiserviceService,
-    private modalController: ModalController
-  ) { }
+    private modalController: ModalController,
+  ) { 
+    addIcons({
+      personOutline,
+      mailOutline,
+      notificationsOutline,
+      logOutOutline,
+      chatbubblesOutline,
+      heartOutline
+    });
+  }
 
   ngOnInit() {
+    console.log('profile ngoninit');
+    this.options = [
+      {title: 'Perfil', icon: 'person-outline', color: 'primary'},
+      {title: 'Comunidad', icon: 'chatbubbles-outline', color: 'primary'},
+      {title: 'Amigos', icon: 'heart-outline', color: 'primary'},
+      {title: 'Correo', icon: 'mail-outline', color: 'primary'},
+      {title: 'Notificationes', icon: 'notifications-outline', color: 'primary'},
+      {title: 'Salir', icon: 'log-out-outline', color: 'dark', background: 'primary'},
+    ];
+
     this.route.paramMap.subscribe(params => {
       const idParam = params.get('id');
       if (idParam) {
@@ -49,14 +76,34 @@ export class InicioPage implements OnInit {
     this.apiService.getPerfilbyID(this.userId).subscribe(
       async (data) => {
         this.userData = data;
-        console.log('User data:', this.userData[0]);
+        if (this.userData && this.userData[0]) {
+          this.nombreUsuario = this.userData[0].nombre;  // Asigna el nombre del usuario
+          this.imgPerf = this.userData[0].img_perf;  // Asigna la URL de la imagen
+
+          console.log('Nombre de usuario:', this.nombreUsuario);  // Verifica el nombre del usuario
+          console.log('Imagen de perfil:', this.imgPerf);  // Verifica la URL de la imagen
+        } else {
+          console.error('No se encontró el usuario con ese ID');
+        }
       },
       (error) => {
         console.error('Error fetching user data:', error);
       }
-    );
-
+  );
    
 
   }
+  imgPerf(arg0: string, imgPerf: any) {
+    throw new Error('Method not implemented.');
+  }
+
+  getRows() {
+    const rows = [];
+    for (let i= 0; i < this.options.length; i += 3) {
+      rows.push(this.options.slice(i, i + 3));
+    }
+    return rows;
+  }
+
+
 }
