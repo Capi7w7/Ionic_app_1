@@ -18,7 +18,7 @@
       "apellido": "Suarez",
       "apodo": "Nay",
       "edad": 21,
-      "img_perf": "https://th.bing.com/th/id/OIP.A9NoL9YD_Eolof8BwvVbWgHaG1?rs=1&pid=ImgDetMain"
+      "img_perf": "/assets/images/nayareth.jpg"
     },
     {
       "id": 3,
@@ -26,7 +26,8 @@
       "pass": "Abc123456",
       "nombre": "Matias",
       "apellido": "Martinez",
-      "edad": 23
+      "edad": 23,
+      "img_perf": "/assets/images/default-profile.jpg"
     }
   ],
   "chat": [
