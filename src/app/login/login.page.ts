@@ -65,7 +65,7 @@ export class LoginPage implements OnInit {
   ngOnInit() {}
 
   ionViewWillEnter(){
-    this.ingresar()
+    this.toggleAnimation();
   }
 
   

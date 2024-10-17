@@ -18,11 +18,11 @@
             <ion-input formControlName="email"></ion-input>    
           </ion-item>
           <ion-item>
-            <ion-label position="floating">Contraseña</ion-label>
+            <ion-label position="floating" (click)="toggleAnimation()">Contraseña</ion-label>
             <ion-input formControlName="password" type="password"></ion-input>    
           </ion-item>
         </form>
-        <ion-button fill="clear" (click)="OlvidoContrasena()" class="forgot-password-button">
+        <ion-button fill="clear" (click)="showForgotPassword()" class="forgot-password-button">
           ¿Olvidaste tu contraseña?
         </ion-button>
 
