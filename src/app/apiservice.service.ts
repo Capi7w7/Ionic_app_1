@@ -40,6 +40,9 @@ private apiUrl = 'http://localhost:3000';
 
   login(email: string, password: string) {
   return this.httpClient.get<Iperfil[]>(`${environment.apiURL}/perfiles?mail=${email}&pass=${password}`);
+} 
+  obtenerPorMail(email: string) {
+  return this.httpClient.get<Iperfil[]>(`${environment.apiURL}/perfiles?mail=${email}`);
 }
 
   actualizarPassword(id: string, newPassword: string): Observable<Iperfil> {
@@ -51,8 +54,17 @@ private apiUrl = 'http://localhost:3000';
   );
 }
 
+actualizarImg(id: string, newImg: string): Observable<Iperfil> {
+  return this.httpClient.get<Iperfil>(`${environment.apiURL}/perfiles/${id}`).pipe(
+    switchMap(user => {
+      const updatedUser = { ...user, img_perf: newImg };
+      return this.httpClient.put<Iperfil>(`${environment.apiURL}/perfiles/${id}`, updatedUser);
+    })
+  );
+}
+
   // eleminar informacion
   deleteData(id: number) {
-    return this.httpClient.delete(`${this.apiUrl}/data/${id}`)
+    return this.httpClient.delete(`${this.apiUrl}/perfiles/${id}`)
   }
 }

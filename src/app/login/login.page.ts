@@ -65,12 +65,14 @@ export class LoginPage implements OnInit {
   ngOnInit() {}
 
   ionViewWillEnter(){
-    this.ingresar()
+    this.toggleAnimation();
   }
 
   
   async ingresar() {
     
+    localStorage.removeItem('userId');
+
     var f = this.formularioLogin.value;
 
 

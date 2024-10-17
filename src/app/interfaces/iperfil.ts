@@ -6,5 +6,5 @@ export interface Iperfil {
     apellido: string,
     apodo: string,
     edad: number,
-    img_perf: string
+    img_perf?: string
 }
