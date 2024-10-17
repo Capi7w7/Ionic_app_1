@@ -34,7 +34,7 @@ export class PerfilPage implements OnInit {
       {title: 'Amigos', icon: 'heart-outline', color: 'primary'},
       {title: 'Correo', icon: 'mail-outline', color: 'primary'},
       {title: 'Notificationes', icon: 'notifications-outline', color: 'primary'},
-      {title: 'Salir', icon: 'log-out-outline', color: 'dark', background: 'primary'},
+      {title: '', icon: 'log-out-outline', color: 'dark', background: 'primary'},
     ];
   }
 

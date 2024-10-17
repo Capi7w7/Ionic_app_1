@@ -1,6 +1,9 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="primary">
-    <ion-title>Eliminar</ion-title>
+  <ion-buttons slot="start">
+    <ion-back-button defaultHref="/inicio"></ion-back-button>
+  </ion-buttons>
+    <ion-title>Mi perfil</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -15,7 +18,7 @@
   
     <ion-item lines="none" class="profile">
       <ion-label class="ion-text-center">
-        <ion-text color="primary">{{ nombreUsuario }}</ion-text>  <!-- Muestra el nombre del usuario -->
+        <ion-text color="primary">{{nombreUsuario}}</ion-text>  <!-- Muestra el nombre del usuario -->
         <p>
           <ion-text color="light">Ing en Informática</ion-text>  <!-- Puedes ajustar esto con los datos reales -->
         </p>
