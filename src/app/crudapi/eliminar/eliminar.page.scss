@@ -1,138 +1,190 @@
-ion-content.background{
-    --background: url(/assets/images/fondoperfil.jpeg) 0 0/100% 100% no-repeat;
-  }
+
+
+
+.profile-page-content {
+  --background: white;
+  text-align: center;
+}
+
+.background-container {
+  width: 100%;
+  height: 200px; /* Ajusta la altura según tus necesidades */
+  overflow: hidden;
+  position: relative;
+}
+
+.background-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-container {
+  position: relative;
+  margin-top: -80px; /* Esto ajusta el avatar hacia arriba sobre la imagen de fondo */
+  z-index: 1;
+}
+
+.profile-avatar {
+  width: 120px;
+  height: 120px;
+  border: 5px solid #cfa4e5;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+
+.profile-container h1 {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin: 10px 0 5px 0;
+}
+
+.profile-container p {
+  color: grey;
+  font-size: 1rem;
+}
+
+
+.stats-grid {
+  margin-top: -2px;
+}
+
+.stat-col ion-text {
+  margin-top: 2px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--ion-color-light);
+}
+
+.stat-col p {
+  font-size: 1rem;
+  color: var(--ion-color-favorite);
+  margin: 0;
+}
+
+
+ion-card {
+  --ion-background-color: #f0f0f0;
+  --ion-border-color: #141010;
+}
+
+ion-item {
+  --ion-padding-start: 20px;
+}
+
+
+.info-title {
+  background-color: #760dab; /* Fondo morado */
+  color: rgb(255, 255, 255); /* Texto en blanco para contraste */
+  text-align: center;
   
-  
-  ion-card-title {
-    color: black;
-  }
-  
-  ion-input {
-    color: rgb(4, 17, 17);
-  }
-  
-  .option-button {
-    height: 100%;
-    width: 100%;
-    --padding-start: 0;
-    --padding-end: 0;
-  }
-  
-  .subtitulo-container {
-  display: flex;
+}
+
+.info-item {
+  background-color: #dedddecf; /* Fondo más claro para los ítems */
+  --ion-background-color: transparent; /* Elimina colores de fondo predeterminados */
+}
+
+.info-item ion-label {
+
+  color: #000000; /* Texto gris */
+}
+
+.info-item ion-text {
+  color: #000000; /* Texto oscuro */
+}
+
+ion-card-title {
+  color: #020202
+ 
+
+}
+
+.photos-card {
+  margin-top: 20px;
+}
+
+.photos-row {
   justify-content: center;
-  align-items: center;
-  gap: 10px; /* Espacio entre el icono y el subtítulo */
+  margin-top: -24px;
+  margin-bottom: -5px;
+  background-color: #000000;
+  margin-left: -5px;
+  margin-right: -5px;
+}
+
+.photo-img {
+  width: 100%;
+  height: 150px; /* Altura fija para todas las imágenes */
+  object-fit: cover; /* Asegura que la imagen se recorte correctamente */
+  border-radius: 10px;
+}
+
+
+
+.publi-label h2 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 0;
+}
+
+.publi-label p {
+  font-size: 1rem;
+  color: #6e6e6e;
+}
+
+.post-date {
+  font-size: 0.8rem;
+  color: #a6a6a6;
+  margin-top: -10px;
+}
+
+
+
+ion-card {
   margin-bottom: 20px;
-  }
-  
-  .custom-modal .modal-wrapper {
-  height: 75%;
-  width: 75%; /* Ancho del modal */
-  position: bottom;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  background: white;
-  box-shadow: 2px 0 10px rgba(180, 38, 38, 0.3);
-  }
-  
-  .titulo-container {
-    margin-top: -5px; /* Separación desde el elemento superior */
-  }
-  
-  
-  .custom-subtitle {
-    font-family: 'Poppins', 'Arial', sans-serif; /* Fuente moderna y legible */
-    font-size: 1.4rem; /* Aumentar el tamaño para mejor visibilidad */
-    font-weight: 400; /* Hacer el texto más fuerte pero no demasiado */
-    text-align: center;
-    color: #fefefe; /* Un color más oscuro para mejor contraste */
-    margin: 0;
-    padding: -40px 0; /* Añadir un poco de padding superior e inferior */
-    line-height: 1.5;
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2); /* Añadir sombra para más profundidad */
-  }
-  
-  .image {
-    transform: translateY(5vh);
-    ion-avatar {
-        width: 25vh;
-        height: 25vh;
-        border: 3px solid var(--ion-color-primary);
-        padding: 0.8vh;
-        margin-bottom: 6vh;
-        }
-   }
-  
-   ion-item.profile {
-    --ion-background-color: transparent !important; /* Fondo transparente */
-    background-color: transparent !important; /* Asegura que sea transparente */
-  }
-  
-  ion-item.profile ion-label {
-    font-size: 1.5rem;
-    font-weight: 600;
-  }
-  
-  ion-item.profile ion-label p {
-    font-size: 1rem;
-    font-weight: bold;
-    margin-top: 10px;
-  }
-  
-  ion-card.options {
-    position: absolute;
-    width: 80%;
-    margin: auto;
-    top: 40px;
-    left: 50%;
-    transform: translateY(48vh) translateX(-50%);
-    background-color: var(--ion-color-favorite); /* Aplica el color de fondo directamente */
-    border-radius: 30px;
-    ion-row {
-      padding-bottom: 1.5vh;
-      ion-col {
-        margin-top: 15px;
-          ion-label {
-            text-align: -webkit-center;
-            letter-spacing: 0.5px;
-        ion-avatar {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 4vh;
-            height: 4vh;
-            background-color: var(--ion-color-light);
-            border-radius: 50%;
-            ion-icon {
-                font-size: 1.3rem;
-            }
-            }
-            p {
-              margin-top: 5px;
-              ion-text {
-                font-size: 0.78rem;
-                font-weight: 550;
-            }
-          } 
-      }
-    }
-  }
-  }
-  
-  .borderBottom {
-    border-bottom: 1px solid var(--ion-color-light);
-  }
-  
-  .paddingTop {
-    padding-top: 1.5vh;
-  }
-  
-  .profile-content {
-    background: var(--ion-color-dark);
-    border-radius: 25px;
-    padding-bottom: 18vh;
-  }
-  
-  
+}
+
+ion-card-content {
+  padding: 15px;
+}
+
+ion-avatar {
+  width: 30px;
+  height: 30px;
+}
+
+h2 {
+  margin-left: 40px;
+  margin-top: -33px;
+}
+
+.post-interactions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.interaction-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.9rem;
+  flex: 1; /* Cada opción tomará el mismo espacio */
+  text-align: center; /* Asegura que el texto esté centrado bajo el ícono */
+}
+
+.interaction-option ion-icon {
+  font-size: 1.2rem;
+}
+
+.navb {
+  position:relative;
+  margin-bottom: 50px;
+}
+
+.publi-card {
+  background-color: #222428;
+  margin-top: -20px;
+}
