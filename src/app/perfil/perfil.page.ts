@@ -38,12 +38,4 @@ export class PerfilPage implements OnInit {
     ];
   }
 
-  getRows() {
-    const rows = [];
-    for (let i= 0; i < this.options.length; i += 3) {
-      rows.push(this.options.slice(i, i + 3));
-    }
-    return rows;
-  }
-
 }

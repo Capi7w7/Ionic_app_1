@@ -8,6 +8,7 @@ import { EliminarPageRoutingModule } from './eliminar-routing.module';
 
 import { EliminarPage } from './eliminar.page';
 
+
 @NgModule({
   imports: [
     CommonModule,
@@ -15,6 +16,5 @@ import { EliminarPage } from './eliminar.page';
     IonicModule,
     EliminarPageRoutingModule
   ],
-  declarations: [EliminarPage]
 })
 export class EliminarPageModule {}
