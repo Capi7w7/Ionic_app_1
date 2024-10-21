@@ -35,7 +35,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'agregar',
+    path: 'agregar/:id',
     loadChildren: () => import('./crudapi/agregar/agregar.module').then( m => m.AgregarPageModule),
     canActivate: [AuthGuard]
   },
@@ -56,7 +56,8 @@ const routes: Routes = [
   },
   {
     path: '**', redirectTo: 'not-found'
-  },  {
+  },
+  {
     path: 'not-found',
     loadChildren: () => import('./not-found/not-found.module').then( m => m.NotFoundPageModule)
   }

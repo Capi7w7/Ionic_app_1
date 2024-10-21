@@ -9,6 +9,7 @@ import { ApiserviceService } from '../apiservice.service';
 import { chatbubblesOutline, heartOutline, logOutOutline, mailOutline, notificationsOutline, personOutline } from 'ionicons/icons'
 import { RouterLink } from '@angular/router';
 import { AuthServiceService } from '../auth.service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-inicio',
@@ -33,6 +34,7 @@ export class InicioPage implements OnInit {
     private apiService: ApiserviceService,
     private modalController: ModalController,
     private authService: AuthServiceService,
+    private router: Router,
   ) { 
     addIcons({
       personOutline,
@@ -76,6 +78,10 @@ export class InicioPage implements OnInit {
     return await modal.present();
   }
 
+  async irAcamara() {
+    this.router.navigate(['/agregar',this.userId]);
+  }
+
   loadUserData() {
     this.apiService.getPerfilbyID(this.userId).subscribe(
       async (data) => {
@@ -95,7 +101,9 @@ export class InicioPage implements OnInit {
         console.error('Error fetching user data:', error);
       }
   );
-   
+  
+  
+ 
 
   }
   imgPerf(arg0: string, imgPerf: any) {

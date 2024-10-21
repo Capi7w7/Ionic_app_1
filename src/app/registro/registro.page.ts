@@ -5,7 +5,7 @@ import { AuthServiceService } from '../auth.service.service';
 import { ApiserviceService } from '../apiservice.service'; 
 import { IperfilId } from '../interfaces/iperfil-id';
 import { InfiniteScrollCustomEvent, LoadingController } from '@ionic/angular';
-import { DbserviceService } from '../Sqlite/base.service';
+import { BaseService } from '../Sqlite/base.service';
 
 @Component({
   selector: 'app-registro',
@@ -22,7 +22,7 @@ export class RegistroPage {
     public authService: AuthServiceService,
     private apiService: ApiserviceService,
     private loadingCtrl:LoadingController,
-    private dbService: DbserviceService
+    private dbService: BaseService,
   ) 
   {
    this.formularioRegistro = this.fb.group({
@@ -88,11 +88,17 @@ export class RegistroPage {
     if (f.birthdate) usuario.edad = this.calculateAge(f.birthdate);
     if (f.img_perf) usuario.img_perf = f.img_perf;
 
-      //this.dbService.createSesionData(usuario)
+    
+
+      try {
+        await this.dbService.createUser(usuario);
+        console.log("Datos guardados en la base de datos");
+      } catch ( error) {
+        console.error("Error al guardar los datos en la base de datos", error);
+      }
 
       this.apiService.crearPerfil(usuario).subscribe(
         async (response) => {
-          //this.dbService.clearSesionData();
           const alert = await this.alertController.create({
             header: 'Ingresado correctamente',
             message: 'Se ha registrado Exitosamente',

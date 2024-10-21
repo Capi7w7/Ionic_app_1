@@ -55,6 +55,15 @@
       "apellido": "Pacheco",
       "apodo": "Jovi",
       "edad": 71
+    },
+    {
+      "id": "abb2",
+      "mail": "marc.2@gmail.com",
+      "pass": "Abc123456",
+      "nombre": "Marco",
+      "apellido": "Solis",
+      "apodo": "Marcus",
+      "edad": 24
     }
   ]
 }
