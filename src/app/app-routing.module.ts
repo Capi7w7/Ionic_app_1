@@ -50,13 +50,14 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'eliminar',
+    path: 'eliminar/:id',
     loadChildren: () => import('./crudapi/eliminar/eliminar.module').then( m => m.EliminarPageModule),
     canActivate: [AuthGuard]
   },
   {
     path: '**', redirectTo: 'not-found'
-  },  {
+  },
+  {
     path: 'not-found',
     loadChildren: () => import('./not-found/not-found.module').then( m => m.NotFoundPageModule)
   }
