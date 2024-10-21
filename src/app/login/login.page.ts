@@ -9,6 +9,7 @@ import { AlertController, InfiniteScrollCustomEvent, LoadingController, NavContr
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { ApiserviceService } from '../apiservice.service';
 import { Router } from '@angular/router';
+import { BaseService } from '../Sqlite/base.service';
 
 @Component({
   selector: 'app-login',
@@ -33,7 +34,8 @@ export class LoginPage implements OnInit {
     public alertController: AlertController,
     public navCtrl: NavController,
     private apiService: ApiserviceService, private loadingCtrl: LoadingController,
-    private router: Router) {
+    private router: Router,
+    private baseService: BaseService) {
 
       
 
@@ -71,6 +73,7 @@ export class LoginPage implements OnInit {
   
   async ingresar() {
     
+    
     localStorage.removeItem('userId');
 
     var f = this.formularioLogin.value;
@@ -94,6 +97,13 @@ export class LoginPage implements OnInit {
       });
       await loading.present();
 
+
+      //conexion a la base de datos local
+      this.baseService.getUserByEmailandPass(f.email,f.password)
+
+
+    //conexion a la api
+
     this.apiService.login(f.email, f.password).subscribe(
       async (response) => {
         await loading.dismiss();
@@ -103,6 +113,7 @@ export class LoginPage implements OnInit {
           localStorage.setItem('userId', this.userId);
           console.log("Usuario logueado");
           this.router.navigate(['/inicio',this.userId]);
+            
         } else {
           const alert = await this.alertController.create({
             header: 'Error',

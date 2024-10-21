@@ -35,7 +35,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'agregar',
+    path: 'agregar/:id',
     loadChildren: () => import('./crudapi/agregar/agregar.module').then( m => m.AgregarPageModule),
     canActivate: [AuthGuard]
   },

@@ -12,52 +12,25 @@ import { AlertController } from '@ionic/angular';
 })
 export class AgregarPage implements OnInit {
 
+
+
+  capturedImage: string | undefined;
+
   constructor(private alertController: AlertController,private route:ActivatedRoute, private apiService: ApiserviceService) { }
 
   userId: string='';
 
   ngOnInit() {
-    this.promptForName();
-  }
 
-  async promptForName() {
-    const alert = await this.alertController.create({
-      header: 'Enter Your mail',
-      inputs: [
-        {
-          name: 'mail',
-          type: 'text',
-          placeholder: 'Your Name'
-        }
-      ],
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel'
-        },
-        {
-          text: 'OK',
-          handler: (data) => {
-            this.getIdFromMail(data.name);
-          }
-        }
-      ]
-    })
-  }
+    this.route.paramMap.subscribe(params => {
+      const idParam = params.get('id');
+      if (idParam) {
+        this.userId = idParam;
+      } else {
+        console.error('No ID provided');
+      }
+    });
 
-  private getIdFromMail(name: string) {
-    this.apiService.obtenerPorMail(name).subscribe(
-      data => {
-        if (data) {
-          this.userId = data[0].id;
-          console.log('User ID:', this.userId);
-          // Now you can use this ID for deletion or other operations
-        } else {
-          console.log('User not found');
-        }
-      },
-      error => console.error('Error fetching user ID:', error)
-    );
   }
 
 
@@ -65,34 +38,50 @@ export class AgregarPage implements OnInit {
     const image = await Camera.getPhoto({
       quality: 90,
       allowEditing: true,
-      resultType: CameraResultType.Uri,
+      resultType: CameraResultType.DataUrl,
       source: CameraSource.Camera
     });
+    
+    this.capturedImage = image.dataUrl;
+
   
   }
 
   
 
-  private async saveImage(image: string) {
-    const fileName = new Date().getTime() + '.jpeg';
-    const filePath = `assets/images/${fileName}`;
-    const savedFile = await Filesystem.writeFile({
-      path: filePath,
-      data: image,
-      directory: Directory.Data
+  async saveImage() {
+    if (this.capturedImage) {
+      const fileName = new Date().getTime() + '.jpeg';
+      const filePath = `assets/images/${fileName}`;
+      const savedFile = await Filesystem.writeFile({
+        path: filePath,
+        data: this.capturedImage,
+        directory: Directory.Data
+      });
+
+      this.apiService.actualizarImg(this.userId, filePath).subscribe(
+        response => {
+          console.log('imagen actualizada:', response);
+          this.showAlert('Exito', 'Imagen guarada');
+        },
+        error => {
+          console.error('Error:', error);
+          this.showAlert('Error', 'Fallo al cargar la imagen');
+        }
+      );
+    } else {
+      this.showAlert('Error', 'No hay imagen');
+    }
+  }
+
+  async showAlert(header: string, message: string) {
+    const alert = await this.alertController.create({
+      header: header,
+      message: message,
+      buttons: ['OK']
     });
-
-    this.apiService.actualizarImg(this.userId, filePath ).subscribe(
-      response => {
-        console.log('Image path updated in API:', response);
-      },
-      error => {
-        console.error('Error updating image path in API:', error);
-      }
-    );
-
+    await alert.present();
   }
-
   
 
 }
