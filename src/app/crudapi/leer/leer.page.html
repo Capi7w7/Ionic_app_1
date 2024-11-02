@@ -1,22 +1,24 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/inicio"></ion-back-button>
+      <!-- Redirige a la lista de amigos al hacer clic en el botón de regreso -->
+      <ion-back-button [routerLink]="['/listar']"></ion-back-button>
     </ion-buttons>
-    <ion-title>Perfiles</ion-title>
+    <ion-title>Amigos</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">listar</ion-title>
+      <ion-title size="large">Listar Amigos</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <ion-list>
-    <ion-item *ngFor="let f of perfiles; let indexArray = index" [routerLink]="['/listar',f.id]">
-      <ion-label> {{ f.apodo }} </ion-label>
+    <ion-item *ngFor="let f of perfiles; let i = index">
+      <ion-label>{{ f.apodo }}</ion-label>
+      
     </ion-item>
   </ion-list>
 </ion-content>

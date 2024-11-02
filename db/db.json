@@ -13,7 +13,7 @@
     {
       "id": "ac2",
       "mail": "na.suarez@duocuc.cl",
-      "pass": "Abc123456",
+      "pass": "Nay123456",
       "nombre": "Nayareth",
       "apellido": "Suarez",
       "apodo": "Nay",
@@ -21,7 +21,6 @@
       "img_perf": "/assets/images/nayareth.jpg",
       "telefono": "+56976466716",
       "carrera": "Ingeniería en Informática"
-      
     },
     {
       "id": "ca3",
