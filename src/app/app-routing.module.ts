@@ -40,7 +40,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'actualizar',
+    path: 'actualizar/:id',
     loadChildren: () => import('./crudapi/actualizar/actualizar.module').then( m => m.ActualizarPageModule),
     canActivate: [AuthGuard]
   },
