@@ -113,6 +113,10 @@ irAInicio() {
   this.router.navigate(['/inicio', this.userId]); // Redirige a la ruta /inicio con el ID de usuario
 }
 
+irAleer(){
+  this.router.navigate(['/leer', this.userId]);
+}
+
 // Método para redirigir a editar perfil
 editarPerfil() {
   this.router.navigate(['/editar-perfil']);
@@ -131,4 +135,12 @@ editarBio() {
 toggleInfo() {
   this.isInfoVisible = !this.isInfoVisible; // Alterna la visibilidad
 }
+eliminarPerfil() {
+  if (this.userData && this.userData[0]) {
+    const userId = this.userData[0].id;
+    this.apiService.deleteData(userId).subscribe(() => {
+      console.log('Usuario eliminado exitosamente');
+      this.router.navigate(['/login']);
+    });
+  }}
 }

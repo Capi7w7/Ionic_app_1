@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { InfiniteScrollCustomEvent, LoadingController } from '@ionic/angular';
 import { ApiserviceService } from 'src/app/apiservice.service';
 import { Iperfil } from 'src/app/interfaces/iperfil';
+import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-leer',
@@ -13,10 +15,26 @@ import { Iperfil } from 'src/app/interfaces/iperfil';
   export class LeerPage  {
 
     perfiles: Iperfil[] = [];
-  
-    constructor(private perfilesServ:ApiserviceService, private loadingCtrl:LoadingController ) { }
+    
+    userId: string='';
+
+    constructor(private perfilesServ:ApiserviceService,
+                private loadingCtrl:LoadingController,
+                private activatedRoute:ActivatedRoute,
+                private router:Router) { }
   
     ionViewWillEnter(){
+
+      this.activatedRoute.paramMap.subscribe(params => {
+        const idParam = params.get('id');
+        if (idParam) {
+          this.userId = idParam;
+        } else {
+          console.error('No ID provided');
+        }
+      });
+  
+
       this.cargarPerfiles()
     }
   
@@ -42,5 +60,10 @@ import { Iperfil } from 'src/app/interfaces/iperfil';
       }
     )
     }
+
+    async irAinicio(){
+      this.router.navigate(['/eliminar',this.userId]);
+    }
+
   }
 

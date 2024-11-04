@@ -5,5 +5,4 @@ export interface IperfilId {
     apellido: string,
     apodo: string,
     edad: number,
-    img_perf: string
 }

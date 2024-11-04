@@ -45,7 +45,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'leer',
+    path: 'leer/:id',
     loadChildren: () => import('./crudapi/leer/leer.module').then( m => m.LeerPageModule),
     canActivate: [AuthGuard]
   },

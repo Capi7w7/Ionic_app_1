@@ -54,14 +54,15 @@
 <!-- Navbar con íconos -->
 <ion-tabs>
   <ion-tab-bar slot="bottom" color="primary">
-    <ion-tab-button [routerLink]="'/leer'">
-      <ion-icon name="people"></ion-icon>
-      <ion-label>Perfiles</ion-label>
-    </ion-tab-button>
-
+  
     <ion-tab-button [routerLink]="['/actualizar']">
       <ion-icon name="chatbubbles"></ion-icon>
       <ion-label>Chat</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button [routerLink]="['/editar-perfil']">
+      <ion-icon name="bug"></ion-icon>
+      <ion-label>Testing</ion-label>
     </ion-tab-button>
 
     <ion-tab-button (click)="irAperfil()" >
