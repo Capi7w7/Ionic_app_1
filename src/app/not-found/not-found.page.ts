@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-not-found',
@@ -13,6 +14,10 @@ export class NotFoundPage implements OnInit {
 
   ngOnInit() {
     this.startCountdown();  // Inicia el primer contador
+  }
+
+  constructor(public router: Router) {
+
   }
 
   startCountdown() {
@@ -50,6 +55,6 @@ export class NotFoundPage implements OnInit {
 
   redirectToLogin() {
     // Lógica para redirigir al usuario a la página de login
-    window.location.href = '/login';
+    this.router.navigate(['/login']);
   }
 }

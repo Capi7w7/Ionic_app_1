@@ -72,9 +72,6 @@ export class LoginPage implements OnInit {
 
   
   async ingresar() {
-    
-    
-    localStorage.removeItem('userId');
 
     var f = this.formularioLogin.value;
 
@@ -98,8 +95,6 @@ export class LoginPage implements OnInit {
       await loading.present();
 
 
-      //conexion a la base de datos local
-      this.baseService.getUserByEmailandPass(f.email,f.password)
 
 
     //conexion a la api

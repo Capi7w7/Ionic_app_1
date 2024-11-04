@@ -112,9 +112,10 @@
 <!-- Navbar separado del contenido -->
 <ion-tabs class="navb">
   <ion-tab-bar slot="bottom" color="dark">
-    <ion-tab-button [routerLink]="['/editar-perfil']">
-      <ion-icon name="person"></ion-icon>
-      <ion-label>Editar Perfil</ion-label>
+
+    <ion-tab-button color="danger" (click)="eliminarPerfil()">
+      <ion-icon name="person-remove"></ion-icon>
+      <ion-label>Eliminar Usuario</ion-label>
     </ion-tab-button>
 
     <ion-tab-button (click)="irAInicio()">
@@ -122,7 +123,7 @@
       <ion-label>Inicio</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button [routerLink]="['/leer']">
+    <ion-tab-button (click)="irAleer()">
       <ion-icon name="people"></ion-icon>
       <ion-label>Amigos</ion-label>
     </ion-tab-button>

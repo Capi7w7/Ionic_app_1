@@ -1,40 +1,38 @@
-import { Injectable } from '@angular/core';
-import { SQLite, SQLiteObject } from '@awesome-cordova-plugins/sqlite/ngx';
+import { Injectable, signal, WritableSignal } from '@angular/core';
+import {CapacitorSQLite, SQLiteConnection, SQLiteDBConnection} from '@capacitor-community/sqlite';
+import { IperfilId} from '../interfaces/iperfil-id';
+
+const DB_perfiles = "MyPerfiles";
+
 
 @Injectable({
   providedIn: 'root'
 })
+
+
+
+
 export class BaseService {
-  public database!: SQLiteObject;
-  
-  constructor(public sqlite: SQLite) {
-    this.initializeDatabase();
-  }
 
-   async initializeDatabase() {
-    try {
-      this.database = await this.sqlite.create({
-        name: 'mi_plaza.db',
-        location: 'default'
-      });
-      await this.createTables();
-    } catch (error) {
-      console.error('Error initializing database', error);
-    }
-  }
+  private sqlite: SQLiteConnection = new SQLiteConnection(CapacitorSQLite);
+  private db!: SQLiteDBConnection;
+  private perfil: WritableSignal<IperfilId[]> = signal(<IperfilId[]>[]);
 
-async getUsers() {
-  const data = await this.database.executeSql('SELECT * FROM users', []);
-  if (data.rows.length > 0) {
-    return data.rows.item(0);
-  } else {
-    return null;
-  }
-}
+  constructor() { }
 
-  private async createTables() {
-    const query = `
-      CREATE TABLE IF NOT EXISTS users (
+  async initializeDatabase() {
+    this.db = await this.sqlite.createConnection(
+      DB_perfiles,
+      false,
+      'no-encryption',
+      1,
+      false
+    );
+
+    await this.db.open();
+
+    const schema = `
+      CREATE TABLE IF NOT EXISTS perfiles (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         mail TEXT UNIQUE,
         pass TEXT,
@@ -42,31 +40,34 @@ async getUsers() {
         apellido TEXT,
         apodo TEXT,
         edad INTEGER,
-        img_perf TEXT
-      )
-    `;
-    await this.database.executeSql(query, []);
+      );`;
+
+
+     await this.db.execute(schema);
+     this.loadPerfiles();
+     return true; 
+}
+  async loadPerfiles(){
+    const perfiles = await this.db.query('SELECT * FROM perfiles');
+    this.perfil.set(perfiles.values || []);
   }
 
-  async dropUserTable() {
-    const query = 'DROP TABLE IF EXISTS users';
-    return await this.database.executeSql(query)	
-  }
-
-
-
-  async createUser(user: any) {
+  async createUser(perfil: any) {
     const query = `
-      INSERT INTO users (mail, pass, nombre, apellido, apodo, edad, img_perf)
-      VALUES (?, ?, ?, ?, ?, ?, ?)
+      INSERT INTO perfiles (mail, pass, nombre, apellido, apodo, edad)
+      VALUES (?, ?, ?, ?, ?, ?)
     `;
-    const values = [user.mail, user.pass, user.nombre, user.apellido, user.apodo, user.edad, user.img_perf];
-    return this.database.executeSql(query, values);
+    const values = [perfil.mail, perfil.pass, perfil.nombre, perfil.apellido, perfil.apodo, perfil.edad];
+    return this.db.query(query, values);
   }
 
-  async getUserByEmailandPass(email: string, password: string) {
-    const query = 'SELECT * FROM users WHERE mail = ? pass=?';
-    const result = await this.database.executeSql(query, [email,password]);
-    return result.rows.item(0);
+  async deletePerfiles(){
+    const query = 'DROP TABLE IF EXISTS users';
+    await this.db.execute(query);
+   
+  }
+
+  async getPerfiles() {
+    return this.perfil;
   }
 }

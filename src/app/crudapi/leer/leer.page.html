@@ -2,7 +2,7 @@
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <!-- Redirige a la lista de amigos al hacer clic en el botón de regreso -->
-      <ion-back-button [routerLink]="['/listar']"></ion-back-button>
+      <ion-back-button (click)="irAinicio()"></ion-back-button>
     </ion-buttons>
     <ion-title>Amigos</ion-title>
   </ion-toolbar>
@@ -16,7 +16,7 @@
   </ion-header>
 
   <ion-list>
-    <ion-item *ngFor="let f of perfiles; let i = index">
+    <ion-item *ngFor="let f of perfiles; let i = index" [routerLink]="['/listar',f.id]">
       <ion-label>{{ f.apodo }}</ion-label>
       
     </ion-item>

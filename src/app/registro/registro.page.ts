@@ -13,6 +13,9 @@ import { BaseService } from '../Sqlite/base.service';
   styleUrls: ['./registro.page.scss'],
 })
 export class RegistroPage {
+
+  perfiles = this.dbService.getPerfiles();
+  newPerfil = '';
   formularioRegistro: FormGroup;
 
   constructor(
@@ -49,20 +52,20 @@ export class RegistroPage {
 
   async ionViewWillEnter() {
 
-    await this.dbService.initializeDatabase();
-
-    const savedUser = await this.dbService.getUsers();
-    if (savedUser) {
-      this.formularioRegistro.patchValue({
-        nombredb: savedUser.nombre,
-        apellidodb: savedUser.apellido,
-        apododb: savedUser.apodo,
-        emaildb: savedUser.mail,
-        passworddb: savedUser.pass,
-        confirmacionPassworddb: savedUser.pass,
-        birthdatedb: savedUser.edad
-      });
-    }
+  await this.dbService.initializeDatabase();
+  const savedProfiles = await this.dbService.getPerfiles();
+  
+  // Fill form if there's a saved profile
+  savedProfiles().forEach(profile => {
+    this.formularioRegistro.patchValue({
+      nombre: profile.nombre,
+      apellido: profile.apellido,
+      apodo: profile.apodo,
+      email: profile.mail,
+      password: profile.pass,
+    });
+  });
+    
   }
 
   async guardar() {
@@ -113,14 +116,17 @@ export class RegistroPage {
             header: 'Ingresado correctamente',
             message: 'Se ha registrado Exitosamente',
             buttons: ['Aceptar']
-          });
+          }
+          
+          
+        );
           await alert.present();
           console.log("Usuario registrado", response);
-          this.dbService.dropUserTable();
+          await this.dbService.deletePerfiles();
         },
         async (error) => {
 
-          this.dbService.createUser(usuario);
+          await this.dbService.createUser(usuario);
           console.log("Datos guardados en la base de datos");
 
           const alert = await this.alertController.create({
