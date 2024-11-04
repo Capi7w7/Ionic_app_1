@@ -11,7 +11,24 @@ export class ActualizarPage implements OnInit {
 
   constructor(private apiService: ApiserviceService, private activatedRoute: ActivatedRoute, private router: Router) { }
 
+  userId: string='';
+
   ngOnInit() {
+
+    this.activatedRoute.paramMap.subscribe(params => {
+      const idParam = params.get('id');
+      if (idParam) {
+        this.userId = idParam;
+      } else {
+        console.error('No ID provided');
+      }
+    });
+
   }
+
+  async irAinicio(){
+    this.router.navigate(['/inicio',this.userId]);
+  }
+
 
 }
