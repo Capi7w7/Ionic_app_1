@@ -120,7 +120,7 @@ editarPerfil() {
 
 // Método para ver amigos
 verAmigos() {
-  this.router.navigate(['/amigos']);
+  this.router.navigate(['/leer']);
 }
 
 
