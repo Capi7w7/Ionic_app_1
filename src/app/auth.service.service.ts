@@ -42,7 +42,7 @@ export class AuthServiceService {
   }
 
   logout() {
-    localStorage.removeItem('userId');
+    sessionStorage.removeItem('userId');
   }
   
   generateVerificationCode(): string {

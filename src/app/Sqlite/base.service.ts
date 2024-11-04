@@ -5,13 +5,13 @@ import { SQLite, SQLiteObject } from '@awesome-cordova-plugins/sqlite/ngx';
   providedIn: 'root'
 })
 export class BaseService {
-  private database!: SQLiteObject;
+  public database!: SQLiteObject;
   
-  constructor(private sqlite: SQLite) {
+  constructor(public sqlite: SQLite) {
     this.initializeDatabase();
   }
 
-  private async initializeDatabase() {
+   async initializeDatabase() {
     try {
       this.database = await this.sqlite.create({
         name: 'mi_plaza.db',
@@ -22,6 +22,15 @@ export class BaseService {
       console.error('Error initializing database', error);
     }
   }
+
+async getUsers() {
+  const data = await this.database.executeSql('SELECT * FROM users', []);
+  if (data.rows.length > 0) {
+    return data.rows.item(0);
+  } else {
+    return null;
+  }
+}
 
   private async createTables() {
     const query = `
@@ -38,6 +47,13 @@ export class BaseService {
     `;
     await this.database.executeSql(query, []);
   }
+
+  async dropUserTable() {
+    const query = 'DROP TABLE IF EXISTS users';
+    return await this.database.executeSql(query)	
+  }
+
+
 
   async createUser(user: any) {
     const query = `

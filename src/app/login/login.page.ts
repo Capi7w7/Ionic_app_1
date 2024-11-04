@@ -110,7 +110,7 @@ export class LoginPage implements OnInit {
         if (response && response.length > 0) {
           const user = response[0];
           this.userId = user.id;
-          localStorage.setItem('userId', this.userId);
+          sessionStorage.setItem('userId', this.userId);
           console.log("Usuario logueado");
           this.router.navigate(['/inicio',this.userId]);
             

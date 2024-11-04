@@ -47,9 +47,27 @@ export class RegistroPage {
     return age;
   }
 
-  
+  async ionViewWillEnter() {
+
+    await this.dbService.initializeDatabase();
+
+    const savedUser = await this.dbService.getUsers();
+    if (savedUser) {
+      this.formularioRegistro.patchValue({
+        nombredb: savedUser.nombre,
+        apellidodb: savedUser.apellido,
+        apododb: savedUser.apodo,
+        emaildb: savedUser.mail,
+        passworddb: savedUser.pass,
+        confirmacionPassworddb: savedUser.pass,
+        birthdatedb: savedUser.edad
+      });
+    }
+  }
 
   async guardar() {
+
+
     var f = this.formularioRegistro.value;
 
     if (this.formularioRegistro.invalid) {
@@ -87,18 +105,10 @@ export class RegistroPage {
     if (f.apodo) usuario.apodo = f.apodo;
     if (f.birthdate) usuario.edad = this.calculateAge(f.birthdate);
     if (f.img_perf) usuario.img_perf = f.img_perf;
-
-    
-
-      try {
-        await this.dbService.createUser(usuario);
-        console.log("Datos guardados en la base de datos");
-      } catch ( error) {
-        console.error("Error al guardar los datos en la base de datos", error);
-      }
-
+     
       this.apiService.crearPerfil(usuario).subscribe(
         async (response) => {
+
           const alert = await this.alertController.create({
             header: 'Ingresado correctamente',
             message: 'Se ha registrado Exitosamente',
@@ -106,8 +116,13 @@ export class RegistroPage {
           });
           await alert.present();
           console.log("Usuario registrado", response);
+          this.dbService.dropUserTable();
         },
         async (error) => {
+
+          this.dbService.createUser(usuario);
+          console.log("Datos guardados en la base de datos");
+
           const alert = await this.alertController.create({
             header: 'Error',
             message: 'Hubo un problema al registrar el usuario',

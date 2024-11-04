@@ -1,9 +1,12 @@
+
 import { Component, OnInit } from '@angular/core';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { Filesystem, Directory } from '@capacitor/filesystem';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiserviceService } from 'src/app/apiservice.service';
 import { AlertController } from '@ionic/angular';
+
+
 
 @Component({
   selector: 'app-agregar',
@@ -16,11 +19,17 @@ export class AgregarPage implements OnInit {
 
   capturedImage: string | undefined;
 
-  constructor(private alertController: AlertController,private route:ActivatedRoute, private apiService: ApiserviceService) { }
+  constructor(
+  private alertController: AlertController,
+  private route:ActivatedRoute, 
+  private apiService: ApiserviceService,
+  private router:Router) { }
 
   userId: string='';
 
   ngOnInit() {
+
+    Camera.requestPermissions();
 
     this.route.paramMap.subscribe(params => {
       const idParam = params.get('id');
@@ -33,19 +42,21 @@ export class AgregarPage implements OnInit {
 
   }
 
+  async irAinicio(){
+    this.router.navigate(['/inicio',this.userId]);
+  }
 
   async takePicture() {
     const image = await Camera.getPhoto({
-      quality: 90,
+      quality: 40,
       allowEditing: true,
       resultType: CameraResultType.DataUrl,
       source: CameraSource.Camera
     });
-    
-    this.capturedImage = image.dataUrl;
 
+    this.capturedImage = image.dataUrl
+    }
   
-  }
 
   
 
@@ -74,14 +85,26 @@ export class AgregarPage implements OnInit {
     }
   }
 
-  async showAlert(header: string, message: string) {
-    const alert = await this.alertController.create({
-      header: header,
-      message: message,
-      buttons: ['OK']
-    });
-    await alert.present();
-  }
-  
+    async showAlert(header: string, message: string) {
+      const alert = await this.alertController.create({
+        header: header,
+        message: message,
+        buttons: ['OK']
+      });
+      await alert.present();
+    }
+
+createDir(){
+  Filesystem.mkdir({
+    path: '',
+    directory: Directory.Documents,
+  }).then(() => {
+    console.log('Directorio creado');
+  }).catch(error => {
+    console.error('Error al crear el directorio', error);
+  });
+}
+
+
 
 }
