@@ -82,6 +82,10 @@ export class InicioPage implements OnInit {
     this.router.navigate(['/agregar',this.userId]);
   }
 
+  async irAperfil( ) {
+    this.router.navigate(['/eliminar',this.userId]);
+  }
+
   loadUserData() {
     this.apiService.getPerfilbyID(this.userId).subscribe(
       async (data) => {

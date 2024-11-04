@@ -22,7 +22,7 @@ export class ApiserviceService {
 constructor(private httpClient: HttpClient) { }
 
 
-private apiUrl = 'http://localhost:3000'; 
+private apiUrl = 'https://67196caa7fc4c5ff8f4d6fd2.mockapi.io/api'; 
 
   // obtener informacion
   listarPerfil():Observable<Iperfil[]> {

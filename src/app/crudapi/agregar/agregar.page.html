@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/inicio"></ion-back-button>
+      <ion-back-button (click)="irAinicio()"></ion-back-button>
     </ion-buttons>
     <ion-title>Agregar</ion-title>
   </ion-toolbar>
@@ -19,6 +19,6 @@
 
   <img [src]="capturedImage" *ngIf="capturedImage">
 
-  <ion-button (click)="saveImage()">Guardar foto</ion-button>
+  <ion-button >Guardar foto</ion-button>
   
 </ion-content>
