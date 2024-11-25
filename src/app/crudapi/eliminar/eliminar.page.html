@@ -1,4 +1,9 @@
 <ion-content [fullscreen]="true" class="profile-page-content" color="dark">
+  
+  <ion-button fill="clear" class="edit-button" (click)="openEditModal()">
+    <ion-icon name="create-outline"></ion-icon>
+  </ion-button>
+  
   <!-- Imagen de fondo -->
   <div class="background-container"> 
     <img src="/assets/images/fondo1.jpg" alt="Background image" class="background-image">
@@ -9,6 +14,9 @@
     <ion-avatar class="profile-avatar">
       <img [src]="imgPerf" alt="Imagen de perfil del usuario">
     </ion-avatar>
+    <ion-button fill="clear" class="camera-button" (click)="irAcamara()">
+      <ion-icon name="camera"></ion-icon>
+    </ion-button>
     <h1>{{nombreUsuario}} {{apellidoUsuario}}</h1>
     <p>{{email}}</p>
   </div>

@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { addIcons } from 'ionicons';
 import { ModalController } from '@ionic/angular';
-import { ModalPage } from '../modal/modal.page';
 import { ActivatedRoute } from '@angular/router';
 import { ApiserviceService } from '../apiservice.service';
 import { chatbubblesOutline, heartOutline, logOutOutline, mailOutline, notificationsOutline, personOutline } from 'ionicons/icons'
@@ -69,15 +68,9 @@ export class InicioPage implements OnInit {
   }
 
 
-  async abrirModal() {
-    const modal = await this.modalController.create({
-      component: ModalPage,
-      cssClass: 'custom-modal',
-    });
-
-    return await modal.present();
+  async irAemprendimiento() {
+    this.router.navigate(['/listar-emprendimiento']);
   }
-
   async irAcamara() {
     this.router.navigate(['/agregar',this.userId]);
   }

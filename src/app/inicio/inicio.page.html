@@ -43,8 +43,6 @@
               <ion-text color="dark">{{ item?.title }}</ion-text>
             </p>
           </div>
-          <!-- Invisible button for the modal trigger -->
-          <ion-button fill="clear" (click)="abrirModal()" class="invisible-button"></ion-button>
         </ion-col>
       </ion-row>
     </ion-card>
@@ -60,20 +58,15 @@
       <ion-label>Chat</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button [routerLink]="['/editar-perfil']">
-      <ion-icon name="bug"></ion-icon>
-      <ion-label>Testing</ion-label>
-    </ion-tab-button>
-
     <ion-tab-button (click)="irAperfil()" >
       <ion-icon name="person"></ion-icon>
       <ion-label>Mi perfil</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button (click)="irAcamara()">
-      <ion-icon name="camera"></ion-icon>
-      <ion-label>Fotos</ion-label>
-    </ion-tab-button>
+  <!--  <ion-tab-button (click)="irAemprendimiento()" >
+    <ion-icon name="storefront"></ion-icon>
+      <ion-label>Emprendimientos</ion-label>
+    </ion-tab-button> -->
 
     <ion-tab-button [routerLink]="'/login'" (click)="exit()">
       <ion-icon name="log-out"></ion-icon>

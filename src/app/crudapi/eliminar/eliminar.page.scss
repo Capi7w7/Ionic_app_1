@@ -1,3 +1,19 @@
+.edit-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1000;
+  --background: transparent;
+  --box-shadow: none;
+  --border-style: none;
+  font-size: 24px;
+}
+
+ion-button::part(native) {
+  border-top: none;
+}
+
+
 .profile-page-content {
   --background: white;
   text-align: center;
@@ -21,6 +37,13 @@
   margin-top: -80px; /* Esto ajusta el avatar hacia arriba sobre la imagen de fondo */
   z-index: 1;
 }
+
+.camera-button {
+  position: absolute;
+  margin-top: -25px;
+  font-size: 20px;
+}
+
 
 .profile-avatar {
   width: 120px;
@@ -184,4 +207,23 @@ h2 {
 .publi-card {
   background-color: #222428;
   margin-top: -20px;
+}
+
+.custom-modal {
+  --width: 65vw;
+  --height: 65vh;
+  --border-radius: 12px;
+
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+@media (max-width: 768px) {
+  .custom-modal {
+    --width: 90vw; /* For smaller screens, occupy 90% */
+    --height: 75vh; /* Adjust height accordingly */
+  }
 }

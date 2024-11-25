@@ -7,18 +7,23 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" class="ion-padding">
+<ion-content [fullscreen]="true" class="ion-padding" class="background">
   <ion-header collapse="condense">
     <ion-toolbar>
       <ion-title size="large">agregar</ion-title>
+      
     </ion-toolbar>
   </ion-header>
 
+    <ion-card class="photo-card">
+      <ion-card-content>
+        <img [src]="image" *ngIf="image" class="photo-img">
+      </ion-card-content>
 
-  <ion-button (click)="takePicture()">Tomar una foto</ion-button>
-
-  <img [src]="capturedImage" *ngIf="capturedImage">
-
-  <ion-button >Guardar foto</ion-button>
-  
+      <ion-card-content>
+        <ion-button expand="block" (click)="takePicture()">Tomar otra foto</ion-button>
+        <ion-button expand="block">Guardar foto</ion-button>
+      </ion-card-content>
+    </ion-card>
 </ion-content>
+
