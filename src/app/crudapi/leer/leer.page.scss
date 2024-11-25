@@ -1,0 +1,46 @@
+/* Fondo y estilos generales */
+.toolbar-header {
+    background-color: #4CAF50; /* Verde vibrante */
+    color: rgb(236, 226, 236);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    
+  }
+  
+  .content-friends {
+    --background: #f9f9f9; /* Fondo claro */
+  }
+  
+  /* Estilo de cada ítem de la lista */
+  .friend-item {
+    border-radius: 12px; /* Bordes redondeados */
+    margin: 5px 10px; /* Espaciado */
+    padding: 10px;
+    background-color: #ffffff; /* Fondo blanco */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .friend-item:hover {
+    transform: scale(1.02); /* Crecimiento leve al pasar el cursor */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Más sombra */
+  }
+  
+  /* Íconos de la lista */
+  ion-icon {
+    color: #aa4caf; /* Verde acorde al tema */
+    font-size: 24px; /* Tamaño del ícono */
+  }
+  
+  /* Estilo de los textos */
+  ion-label h2 {
+    font-size: 1.2rem;
+    color: #333; /* Texto principal */
+    margin: 0;
+  }
+  
+  ion-label p {
+    font-size: 0.9rem;
+    color: #777; /* Texto secundario */
+    margin: 0;
+  }
+
