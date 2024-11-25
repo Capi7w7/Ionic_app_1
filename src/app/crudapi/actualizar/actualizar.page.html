@@ -1,12 +1,21 @@
-<ion-header [translucent]="true">
-  <ion-buttons slot="start">
-      <ion-back-button defaultHref="/inicio"></ion-back-button>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button text="Volver" defaultHref="/inicio"></ion-back-button>
     </ion-buttons>
+  </ion-toolbar>
 </ion-header>
-<ion-content [fullscreen]="true" class="background">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">actualizar</ion-title>
-    </ion-toolbar>
-  </ion-header>
+
+<ion-content class="background">
+  <div #messageContainer class="message-container">
+    <div *ngFor="let msg of messages" class="message-bubble">
+      <div><strong>Yo:</strong> {{ msg.text }}</div>
+      <div class="message-time">{{ msg.time }}</div>
+    </div>
+  </div>
+
+  <div class="input-container">
+    <textarea [(ngModel)]="message" class="input-textarea" placeholder="Escribe un mensaje..."></textarea>
+    <button (click)="sendMessage()" class="send-button">Enviar</button>
+  </div>
 </ion-content>

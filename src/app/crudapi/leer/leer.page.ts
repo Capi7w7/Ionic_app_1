@@ -15,14 +15,19 @@ import { Router } from '@angular/router';
   export class LeerPage  {
 
     perfiles: Iperfil[] = [];
-    
-    userId: string='';
+    perfil: Iperfil | undefined;
+    perfilid: string | null = null;
+  userId: any;
 
-    constructor(private perfilesServ:ApiserviceService,
-                private loadingCtrl:LoadingController,
-                private activatedRoute:ActivatedRoute,
-                private router:Router) { }
+    constructor(private perfilesServ:ApiserviceService,private loadingCtrl:LoadingController,private activatedRoute:ActivatedRoute,private router:Router) { }
   
+    ngOnInit() {
+      this.perfilid = this.activatedRoute.snapshot.paramMap.get('id');
+    if (this.perfilid) {
+      this.obtenerPerfil();
+
+    }
+    }
     ionViewWillEnter(){
 
       this.activatedRoute.paramMap.subscribe(params => {
@@ -64,6 +69,12 @@ import { Router } from '@angular/router';
     async irAinicio(){
       this.router.navigate(['/eliminar',this.userId]);
     }
-
+    obtenerPerfil() {
+      this.perfilesServ.listarPerfil().subscribe((perfiles: Iperfil[]) => {
+        // Buscar el perfil correspondiente en el array de perfiles
+        this.perfil = perfiles.find((p: Iperfil) => p.id === this.perfilid);
+      });
+    }
   }
+  
 

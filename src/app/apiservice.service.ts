@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { retry, catchError, Observable, switchMap,map } from 'rxjs';
+import { retry, catchError, switchMap,map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+
 import { Iperfil } from './interfaces/iperfil';
 
 import { IperfilId } from './interfaces/iperfil-id';

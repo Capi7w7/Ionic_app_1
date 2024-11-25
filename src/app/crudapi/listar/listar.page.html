@@ -1,33 +1,120 @@
-<ion-header [translucent]="true">
-  <ion-toolbar color="primary">
-    <ion-title>Ver perfil</ion-title>
+<ion-header [translucent]="false">
+  <ion-toolbar class="toolbar-header" color="secondary">
+    <!-- Aquí se muestra el botón de retroceso -->
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/leer"></ion-back-button>
-      </ion-buttons>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
+<ion-content [fullscreen]="true" class="profile-page-content" color="dark">
+  <!-- Imagen de fondo -->
+  <div class="background-container"> 
+    <img src="/assets/images/fondo1.jpg" alt="Background image" class="background-image">
+  </div>
 
+  <!-- Avatar del usuario -->
+  <div class="profile-container">
+    <ion-avatar class="profile-avatar">
+      <img [src]="imgPerf" alt="Imagen de perfil del usuario">
+    </ion-avatar>
+    <h1>{{nombreUsuario}} {{apellidoUsuario}}</h1>
+    <p>{{email}}</p>
+  </div>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">listar</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-card>
-    <ion-card-header> ID # {{ perfil.id }}</ion-card-header>
-    <ion-card-title>Nombre {{ perfil.nombre }}</ion-card-title>
-    <ion-card-subtitle>Apellido {{ perfil.apellido}}</ion-card-subtitle>
-    <ion-card-subtitle>Correo {{ perfil.mail}}</ion-card-subtitle>
-    <ion-card-content>
-      <strong>Apodo: {{perfil.apodo}} </strong>
-      <div class="profile-photo-frame">
-      <img src="{{perfil.img_perf}}" alt="No se a encontrado una imagen"  class="profile-photo">
-      </div>
+  <!-- Estadísticas del usuario -->
+  <ion-grid class="stats-grid">
+    <ion-row>
+      <ion-col class="stat-col">
+        <ion-text>10</ion-text>
+        <p>Publicaciones</p>
+      </ion-col>
+      <ion-col class="stat-col">
+        <ion-text>115</ion-text>
+        <p>Amigos</p>
+      </ion-col>
+      <ion-col class="stat-col">
+        <ion-text>250</ion-text>
+        <p>Seguidores</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- Información personal -->
+  <ion-card class="info-card">
+    <ion-card-header class="info-title">
+      <ion-card-title>Información Personal</ion-card-title>
+    </ion-card-header>
+
+      <ion-item class="info-item">
+        <ion-label>Correo electrónico:</ion-label>
+        <ion-text>{{email}}</ion-text>
+      </ion-item>
+      <ion-item class="info-item">
+        <ion-label>Teléfono:</ion-label>
+        <ion-text>{{telefono}}</ion-text>
+      </ion-item>
+      <ion-item class="info-item">
+        <ion-label>Carrera:</ion-label>
+        <ion-text>{{carrera}}</ion-text>
+      </ion-item>
+
+      <ion-card-header class="info-title">
+        <ion-card-title>Fotos</ion-card-title>
+      </ion-card-header>
+      <br>
+      <ion-grid>
+        <ion-row class="photos-row">
+          <ion-col size="4">
+            <img src="assets/images/foto1.jpg" alt="Foto 1" class="photo-img">
+          </ion-col>
+          <ion-col size="4">
+            <img src="assets/images/foto2.jpg" alt="Foto 2" class="photo-img">
+          </ion-col>
+          <ion-col size="4">
+            <img src="assets/images/foto3.jpg" alt="Foto 3" class="photo-img">
+          </ion-col>
+          <ion-col size="4">
+            <img src="assets/images/foto4.jpg" alt="Foto 4" class="photo-img">
+          </ion-col>
+          <ion-col size="4">
+            <img src="assets/images/foto5.jpg" alt="Foto 5" class="photo-img">
+          </ion-col>
+          <ion-col size="4">
+            <img src="assets/images/foto6.jpg" alt="Foto 6" class="photo-img">
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      
+      <ion-card-header class="info-title">
+        <ion-card-title>Publicaciones</ion-card-title>
+      </ion-card-header>
+      <br>
+      <ion-card-content class="publi-card">
+        <ion-item>
+          <ion-label>
+            <h2>{{nombreUsuario}}</h2>
+            <ion-avatar slot="start">
+              <img [src]="imgPerf" alt="Imagen de perfil">
+            </ion-avatar>
+            <p>¿Quién para un frapuccino? El día está bellisimo.</p>
+            <br>
+            <p class="post-date">20 de octubre, 2024 a las 14:30</p>
+          </ion-label>
+        </ion-item>
+      <ion-item lines="none" class="post-interactions">
+        <div class="interaction-option">
+          <ion-icon name="heart-outline"></ion-icon>
+          <ion-label>Me gusta</ion-label>
+        </div>
+        <div class="interaction-option">
+          <ion-icon name="chatbubble-outline"></ion-icon>
+          <ion-label>Comentar</ion-label>
+        </div>
+        <div class="interaction-option">
+          <ion-icon name="share-outline"></ion-icon>
+          <ion-label>Compartir</ion-label>
+        </div>
+      </ion-item>
     </ion-card-content>
 
-
-  </ion-card>
-
-</ion-content>
