@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AbstractControl, ValidatorFn, FormGroup } from '@angular/forms';
 import { ApiserviceService } from './apiservice.service';
-import { Observable, map, switchMap, of } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -24,13 +25,14 @@ export class AuthServiceService {
 
   getUserByUsername(username: string, email: string): Observable<any> {
     return this.apiService.listarPerfil().pipe(
-      map(perfiles => perfiles.find(user => user.nombre === username && user.mail === email) || null)
+      map((perfiles: any[]) => perfiles.find((user: any) => user.nombre === username && user.mail === email) || null)
+
     );
   }
 
   updatePasswordByUsername(id: string, newPassword: string): Observable<boolean> {
     return this.apiService.getPerfilbyID(id).pipe(
-      switchMap(user => {
+      switchMap((user: any) => {
         if (user) {
           return this.apiService.actualizarPassword(id, newPassword).pipe(
             map(() => true)
