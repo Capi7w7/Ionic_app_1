@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Editar Usuario</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cancel()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="background">
+  <ion-card class="responsive-card">
+
+
+  <ion-card-content>
+
+  <form [formGroup]="userForm" (ngSubmit)="save()">
+    <ion-item>
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input formControlName="fnombre"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="userForm.get('fnombre')?.invalid && userForm.get('fnombre')?.touched">
+      <p>El nombre es obligatorio (mínimo 2 caracteres).</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Apellido</ion-label>
+      <ion-input formControlName="fapellido"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="userForm.get('fapellido')?.invalid && userForm.get('fapellido')?.touched">
+      <p>El apellido es obligatorio (mínimo 2 caracteres).</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Apodo</ion-label>
+      <ion-input formControlName="fapodo"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="userForm.get('fapodo')?.invalid && userForm.get('fapodo')?.touched">
+      <p>El apodo es obligatorio (mínimo 2 caracteres).</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Telefono</ion-label>
+      <ion-input formControlName="ftelefono"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="userForm.get('ftelefono')?.invalid && userForm.get('ftelefono')?.touched">
+      <p>El telefono no es obligatorio (mínimo 2 caracteres).</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Carrera</ion-label>
+      <ion-input formControlName="fcarrera"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="userForm.get('fcarrera')?.invalid && userForm.get('fcarrera')?.touched">
+      <p>La carrera no es obligatorio (mínimo 2 caracteres).</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Correo Electrónico</ion-label>
+      <ion-input formControlName="femail"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="userForm.get('femail')?.invalid && userForm.get('femail')?.touched">
+      <p>Introduce un correo válido.</p>
+    </ion-item>
+
+    <ion-footer>
+      <ion-button expand="full" type="submit" [disabled]="userForm.invalid">Guardar</ion-button>
+    </ion-footer>
+  </form>
+  </ion-card-content>
+  </ion-card> 
+</ion-content>

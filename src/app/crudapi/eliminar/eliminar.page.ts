@@ -10,6 +10,8 @@ import { RouterLink } from '@angular/router';
 import { AuthServiceService } from 'src/app/auth.service.service';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { EditUserModalComponent } from 'src/app/editarperfil/editarperfil.component'
+
 
 
 @Component({
@@ -37,10 +39,12 @@ export class EliminarPage implements OnInit {
   seguidores: any;
   publicaciones: any;
   telefono: any;
+  apodo: any;
   carrera!: string;
   isInfoVisible: boolean | undefined;
 
   constructor(
+    private modalCtrl: ModalController,
     private route: ActivatedRoute,
     private apiService: ApiserviceService,
     private modalController: ModalController,
@@ -104,6 +108,31 @@ imgPerf(arg0: string, imgPerf: any) {
   throw new Error('Method not implemented.');
 }
 
+async openEditModal() {
+  const modal = await this.modalCtrl.create({
+    component: EditUserModalComponent,
+    cssClass: 'cutom-modal',
+    componentProps: { nombre: this.nombreUsuario,
+      apellido: this.apellidoUsuario,
+      apodo: this.apodo,
+      mail: this.email,
+      telefono: this.telefono,
+      carrera: this.carrera,
+      userId: this.userId },
+  });
+
+  modal.onDidDismiss().then((result) => {
+    if (result.data) {
+      this.apiService.actualizarPerfil(this.userId, result.data).subscribe(
+        () => {
+          this.loadUserData();
+        }
+      );
+    }
+  });
+
+  await modal.present();
+}
 
 exit() {
   this.authService.logout();
@@ -125,6 +154,10 @@ editarPerfil() {
 // Método para ver amigos
 verAmigos() {
   this.router.navigate(['/leer']);
+}
+
+async irAcamara() {
+  this.router.navigate(['/agregar',this.userId]);
 }
 
 

@@ -5,7 +5,8 @@ import { Filesystem, Directory } from '@capacitor/filesystem';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiserviceService } from 'src/app/apiservice.service';
 import { AlertController } from '@ionic/angular';
-
+import { Storage } from '@angular/fire/storage'
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 
 
 @Component({
@@ -16,14 +17,16 @@ import { AlertController } from '@ionic/angular';
 export class AgregarPage implements OnInit {
 
 
-
+  image: any;
   capturedImage: string | undefined;
 
   constructor(
   private alertController: AlertController,
   private route:ActivatedRoute, 
   private apiService: ApiserviceService,
-  private router:Router) { }
+  private router:Router,
+  private storage: Storage
+) { }
 
   userId: string='';
 
@@ -40,48 +43,54 @@ export class AgregarPage implements OnInit {
       }
     });
 
+     this.takePicture()
+
   }
 
   async irAinicio(){
-    this.router.navigate(['/inicio',this.userId]);
+    this.router.navigate(['/eliminar',this.userId]);
   }
 
   async takePicture() {
     const image = await Camera.getPhoto({
-      quality: 40,
-      allowEditing: true,
+      quality: 90,
+      allowEditing: false,
       resultType: CameraResultType.DataUrl,
-      source: CameraSource.Camera
+      source: CameraSource.Prompt,
+      width: 600,
     });
 
-    this.capturedImage = image.dataUrl
+    this.image = image.dataUrl
+    const blob = this.dataURLtoBLob(image.dataUrl);
+    const url = await this.uploadImage(blob, image);
+    console.log(url);
+    
     }
   
-
+  dataURLtoBLob(dataurl: any){
+    var arr = dataurl.split(','), mine = arr[0].match(/:(.*?);/)[1],
+        bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+    
+    while(n--){
+      u8arr[n] = bstr.charCodeAt(n);
+    } 
+    return new Blob([u8arr], {type:mine});
+  }
   
+  async uploadImage(blob: any, imageData: any) {
 
-  async saveImage() {
-    if (this.capturedImage) {
-      const fileName = new Date().getTime() + '.jpeg';
-      const filePath = `assets/images/${fileName}`;
-      const savedFile = await Filesystem.writeFile({
-        path: filePath,
-        data: this.capturedImage,
-        directory: Directory.Data
-      });
-
-      this.apiService.actualizarImg(this.userId, filePath).subscribe(
-        response => {
-          console.log('imagen actualizada:', response);
-          this.showAlert('Exito', 'Imagen guarada');
-        },
-        error => {
-          console.error('Error:', error);
-          this.showAlert('Error', 'Fallo al cargar la imagen');
-        }
-      );
-    } else {
-      this.showAlert('Error', 'No hay imagen');
+    try{
+      const currentDate = Date.now();
+      const filepath = `Profile-pictures/${currentDate}.${imageData.format}`;
+      const fileRef = ref(this.storage, filepath);
+      const task = await uploadBytes(fileRef, blob);
+      console.log('task', task);
+      const url = getDownloadURL(fileRef);
+      return url;
+    }
+    catch(error){
+      console.error('Error al subir la imagen');
+      throw(error);
     }
   }
 

@@ -26,10 +26,6 @@ const routes: Routes = [
     loadChildren: () => import('./resetpass/resetpass.module').then(m => m.ResetpassPageModule)
   },
   {
-    path: 'modal',
-    loadChildren: () => import('./modal/modal.module').then(m => m.ModalPageModule)
-  },
-  {
     path: 'listar/:id',
     loadChildren: () => import('./crudapi/listar/listar.module').then( m => m.ListarPageModule),
     canActivate: [AuthGuard]
@@ -61,9 +57,19 @@ const routes: Routes = [
     path: 'not-found',
     loadChildren: () => import('./not-found/not-found.module').then( m => m.NotFoundPageModule),
     canActivate: [AuthGuard]
+  },
+  {
+    path: 'agregar-emprendimiento',
+    loadComponent: () =>
+      import('./emprendimiento/agregar-emprendimiento/agregar-emprendimiento.page').then(
+        (m) => m.AgregarEmprendimientoPage
+      ),
+  },
+  {
+    path: 'listar-emprendimiento',
+    loadChildren: () => import('./emprendimiento/listar-emprendimiento/listar-emprendimiento.module').then( m => m.ListarEmprendimientoPageModule),
+    canActivate: [AuthGuard]
   }
-
-
 ];
 
 @NgModule({
