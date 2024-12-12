@@ -96,6 +96,15 @@
    
   
   }
+
+  .chat-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 24px;
+    color: white;
+    z-index: 2;
+  }
   
   .photos-card {
     margin-top: 20px;

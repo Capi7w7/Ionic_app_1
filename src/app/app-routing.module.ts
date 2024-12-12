@@ -59,17 +59,11 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'agregar-emprendimiento',
-    loadComponent: () =>
-      import('./emprendimiento/agregar-emprendimiento/agregar-emprendimiento.page').then(
-        (m) => m.AgregarEmprendimientoPage
-      ),
-  },
-  {
-    path: 'listar-emprendimiento',
-    loadChildren: () => import('./emprendimiento/listar-emprendimiento/listar-emprendimiento.module').then( m => m.ListarEmprendimientoPageModule),
+    path: 'listarpublicar',
+    loadChildren: () => import('./publicar/listarpublicar/listarpublicar.module').then( m => m.ListarpublicarPageModule),
     canActivate: [AuthGuard]
-  }
+  },
+
 ];
 
 @NgModule({

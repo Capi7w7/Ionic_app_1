@@ -17,7 +17,7 @@ import { Router } from '@angular/router';
     perfiles: Iperfil[] = [];
     perfil: Iperfil | undefined;
     perfilid: string | null = null;
-  userId: any;
+    userId2: any;
 
     constructor(private perfilesServ:ApiserviceService,private loadingCtrl:LoadingController,private activatedRoute:ActivatedRoute,private router:Router) { }
   
@@ -33,7 +33,7 @@ import { Router } from '@angular/router';
       this.activatedRoute.paramMap.subscribe(params => {
         const idParam = params.get('id');
         if (idParam) {
-          this.userId = idParam;
+          this.userId2 = idParam;
         } else {
           console.error('No ID provided');
         }
@@ -67,7 +67,7 @@ import { Router } from '@angular/router';
     }
 
     async irAinicio(){
-      this.router.navigate(['/eliminar',this.userId]);
+      this.router.navigate(['/eliminar',this.userId2]);
     }
     obtenerPerfil() {
       this.perfilesServ.listarPerfil().subscribe((perfiles: Iperfil[]) => {
@@ -75,6 +75,9 @@ import { Router } from '@angular/router';
         this.perfil = perfiles.find((p: Iperfil) => p.id === this.perfilid);
       });
     }
+
+   
+
   }
   
 
