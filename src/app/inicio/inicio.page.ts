@@ -69,7 +69,7 @@ export class InicioPage implements OnInit {
 
 
   async irAemprendimiento() {
-    this.router.navigate(['/listar-emprendimiento']);
+    this.router.navigate(['/listarpublicar']);
   }
   async irAcamara() {
     this.router.navigate(['/agregar',this.userId]);

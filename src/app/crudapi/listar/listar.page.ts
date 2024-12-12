@@ -22,6 +22,7 @@ export class ListarPage implements OnInit{
  
   options:any[] = [];
 
+  userId2!: string;
   userId!: string;
   userData: any;
   nombreUsuario: string = '';
@@ -45,7 +46,12 @@ export class ListarPage implements OnInit{
     private modalController: ModalController,
     private authService: AuthServiceService,
     private router: Router
-  ) { 
+  ) {
+    
+    const navigation = this.router.getCurrentNavigation();
+    const state = navigation?.extras.state as {userId2: string};
+    this.userId2 = state?.userId2 || '';
+    
     addIcons({
       personOutline,
       mailOutline,
@@ -105,4 +111,9 @@ imgPerf(arg0: string, imgPerf: any) {
 async irAinicio(){
   this.router.navigate(['/inicio']);
 }
+
+clickchat(){
+  this.router.navigate(['/actualizar',this.userId2]);
+}
+
 }

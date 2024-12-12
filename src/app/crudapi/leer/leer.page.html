@@ -10,7 +10,7 @@
 
 <ion-content [fullscreen]="true" class="content-friends">
   <ion-list>
-    <ion-item *ngFor="let f of perfiles; let i = index" [routerLink]="['/listar',f.id]" class="friend-item">
+    <ion-item *ngFor="let f of perfiles; let i = index" [routerLink]="['/listar',f.id]" [state]="{userId2: userId2}" class="friend-item">
       <!-- Avatar circular al lado del nombre -->
       <ion-avatar slot="start">
         <img [src]="f.img_perf" alt="Avatar de {{ f.apodo || 'Usuario desconocido' }}">
